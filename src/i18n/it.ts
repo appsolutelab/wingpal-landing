@@ -93,7 +93,7 @@ export const it = {
     eyebrow: "Chi siamo",
     title: "Lo costruisce appsolute",
     text: "appsolute è un progetto dell'ITIS G. Cardano di Pavia. Sviluppiamo WingPal in pubblico, e il codice è aperto a chiunque voglia leggerlo o dare una mano.",
-    repoDescription: "Il codice dell'app WingPal.",
+    repoDescription: "Il codice di questa pagina. Quello dell'app arriva qui accanto.",
     repoLink: "Vedi il codice su GitHub",
   },
   footer: {

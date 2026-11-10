@@ -85,6 +85,6 @@ npm run build     # build in dist/
 - [x] Copia del design system
 - [x] Sezioni in italiano e in inglese (prima bozza)
 - [x] Anteprima interattiva nell'hero
-- [ ] Indirizzo vero del repository dell'app (`REPO_NAME` in `src/App.tsx`)
+- [ ] Repository dell'app: per ora `REPO_NAME` in `src/App.tsx` punta a questa landing
 - [ ] Prova di entrambi i temi, su mobile e con `prefers-reduced-motion`
 - [x] Pubblicazione su GitHub Pages: https://appsolutelab.github.io/wingpal-landing/ (workflow in `.github/workflows/pages.yml`, parte a ogni push su `main`)

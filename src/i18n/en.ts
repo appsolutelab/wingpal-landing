@@ -94,7 +94,7 @@ export const en: Texts = {
     eyebrow: "About",
     title: "Built by appsolute",
     text: "appsolute is a project of ITIS G. Cardano, a technical high school in Pavia, Italy. We build WingPal in the open, and the code is there for anyone who wants to read it or help out.",
-    repoDescription: "The code of the WingPal app.",
+    repoDescription: "The code of this page. The app's code will live next to it.",
     repoLink: "View the code on GitHub",
   },
   footer: {

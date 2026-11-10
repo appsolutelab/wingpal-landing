@@ -10,8 +10,8 @@ import { en } from "./i18n/en";
 
 type Lang = "it" | "en";
 
-// shortcut: indirizzo del repository dell'app non ancora confermato, da sostituire con quello vero prima di pubblicare.
-const REPO_NAME = "cestols/wingpal";
+// shortcut: è il repository di questa landing, l'unico pubblico; da cambiare quando esce quello dell'app.
+const REPO_NAME = "appsolutelab/wingpal-landing";
 const REPO_URL = "https://github.com/" + REPO_NAME;
 const LICENSE_URL = "https://www.gnu.org/licenses/agpl-3.0.html";
 const THEME_KEY = "wingpal-theme";
