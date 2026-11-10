@@ -1,0 +1,4 @@
+/* IconButton: un Button quadrato con una sola icona; eredita ombre e animazioni del Button. */
+.ap-btn.ap-btn-icon { width: 44px; min-width: 44px; padding: 0; }
+.ap-btn.ap-btn-icon.ap-btn-sm { width: 34px; min-width: 34px; }
+.ap-btn-icon svg { flex: none; }

@@ -2,7 +2,7 @@
 
 La landing page di [WingPal](#cosè-wingpal), l'app di appsolute che tiene insieme calendario, note e attività. La pagina presenta il progetto e porta al codice su GitHub. Non ci sono iscrizioni e non c'è niente da scaricare finché non esce una versione da scaricare.
 
-> Stato: da sviluppare. Questo README descrive come deve essere la pagina, così chi la costruisce parte dalle stesse decisioni.
+> Stato: prima bozza. Questo README descrive come deve essere la pagina, così chi la costruisce parte dalle stesse decisioni.
 
 ## Cos'è WingPal
 
@@ -41,7 +41,7 @@ App gratuita e open source (AGPL-3.0) che mette calendario, note e attività in 
 
 ## Identità: regole che non si toccano
 
-Le regole complete sono in `Assets/DesignSys/README.md` e `api/tokens.md` del design system WingPal. Le più importanti:
+Le regole complete sono nei README di `src/ui/appsolute/` e `src/ui/wingpal/`. Le più importanti:
 
 - Colori, ombre, spaziature e raggi vengono solo da `var(--…)`. Non si scrive mai un valore a mano e non si fanno override per tema: chiaro e scuro arrivano dai token.
 - Stile neumorfico: sfondo e superfici hanno lo stesso colore e si distinguono con ombre doppie. Lo stato non si comunica mai solo con l'ombra, serve anche un bordo, un'icona o un testo.
@@ -53,30 +53,22 @@ Le regole complete sono in `Assets/DesignSys/README.md` e `api/tokens.md` del de
 
 ## Design system nel progetto
 
-Il design system è una copia scaricata dall'artifact WingPal, messa in `src/design-system/` (`tokens.css`, `components/bundle.css`, `components/bundle.js`, `components/index.d.ts`). Non si modifica a mano: si modifica l'artifact e si riscarica la copia.
+Il design system sono due cartelle di componenti React copiate da `Assets/` in `src/ui/`: `appsolute/` (token, bottoni, Navbar, Hero, Section, FeatureCard, Footer, tema) e `wingpal/` (Tag, TaskItem, EventBlock, PollCard, token di WingPal). Ognuna ha il suo README. Non si modificano qui: si modifica il design system e si ricopia la cartella.
 
-`bundle.js` legge `window.React` nel momento in cui viene caricato. Per questo un modulo imposta il React globale prima di importare il bundle:
+Gli stili si importano una volta sola in `src/main.tsx`, prima quelli di appsolute e poi quelli di WingPal. Il tema scuro si attiva con `data-theme="dark"` su `<html>`; la chiave nel browser è `wingpal-theme`.
 
-```ts
-// src/design-system/index.ts
-import React from 'react';
-(window as any).React = React;
-await import('./components/bundle.js'); // definisce window.Appsolute
-```
-
-Il tema scuro si attiva con `data-theme="dark"` su `<html>`.
-
-## Struttura prevista
+## Struttura
 
 ```
 index.html          pagina italiana
 en/index.html       pagina inglese
 src/
+  main.tsx          legge la lingua da <html lang> e monta la pagina
   App.tsx           la pagina, riceve la lingua
-  components/       Navbar, Footer, Section, FeatureCard, ThemeToggle, HeroPreview
+  App.css           stili della sola landing (prefisso wp-)
   i18n/it.ts, en.ts
-  design-system/    copia del design system (non modificare)
-public/             loghi (logo-w.svg, logo-w-light.svg)
+  ui/appsolute/     copia del design system appsolute (non modificare)
+  ui/wingpal/       copia del design system WingPal (non modificare)
 ```
 
 ## Comandi
@@ -89,9 +81,10 @@ npm run build     # build in dist/
 
 ## Da fare
 
-- [ ] Progetto Vite + React + TS, con `base` per GitHub Pages
-- [ ] Copia del design system e verifica dell'import del bundle
-- [ ] Sezioni in italiano, poi in inglese
-- [ ] Anteprima interattiva nell'hero
+- [x] Progetto Vite + React + TS, con `base` per GitHub Pages
+- [x] Copia del design system
+- [x] Sezioni in italiano e in inglese (prima bozza)
+- [x] Anteprima interattiva nell'hero
+- [ ] Indirizzo vero del repository dell'app (`REPO_NAME` in `src/App.tsx`)
 - [ ] Prova di entrambi i temi, su mobile e con `prefers-reduced-motion`
-- [ ] Pubblicazione su GitHub Pages
+- [ ] Pubblicazione su GitHub Pages (workflow in `.github/workflows/pages.yml`, parte a ogni push su `main`)

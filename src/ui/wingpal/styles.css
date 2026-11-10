@@ -1,0 +1,8 @@
+/* WingPal UI — importa questo file una volta sola (es. in main.tsx). */
+@import "./tokens.css";
+@import "./base.css";
+@import "./components/Tag/Tag.css";
+@import "./components/TaskItem/TaskItem.css";
+@import "./components/EventBlock/EventBlock.css";
+@import "./components/PollCard/PollCard.css";
+@import "./reduced-motion.css";

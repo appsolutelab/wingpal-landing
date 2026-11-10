@@ -1,0 +1,7 @@
+/* EventBlock: in rilievo, con il colore del calendario come striscia e leggera tinta */
+.ap-event { --cal: var(--cal-graphite); position: relative; display: flex; flex-direction: column; gap: 2px; min-width: 0; padding: var(--space-2) var(--space-3) var(--space-2) calc(var(--space-3) + 6px); border-radius: var(--radius-md); background: color-mix(in srgb, var(--cal) 10%, var(--surface)); box-shadow: var(--shadow-raised-sm); color: var(--ink); overflow: hidden; }
+.ap-event::before { content: ""; position: absolute; inset: 8px auto 8px 6px; width: 4px; border-radius: var(--radius-pill); background: var(--cal); }
+.ap-event-title { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ap-event-time { font-size: 13px; line-height: 18px; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.ap-event-compact { flex-direction: row; align-items: baseline; gap: var(--space-2); padding-block: var(--space-1); border-radius: var(--radius-sm); }
+.ap-event-compact::before { inset: 6px auto 6px 6px; }

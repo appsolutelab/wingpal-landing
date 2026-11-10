@@ -1,0 +1,147 @@
+/* WingPal — generato da tokens.json del design system WingPal (token di Appsolute + colori di prodotto) */
+:root, [data-theme="light"] {
+  --bg: #e6e6e6; /* Sfondo dell'app. Nel neumorfismo è anche il colore di bottoni, card e pannelli: le forme escono dallo sfondo con le ombre, non con un colore diverso. */
+  --surface: var(--bg); /* Bottoni, card, pannelli ed editor: stesso colore dello sfondo, separati solo da shadow-raised. */
+  --surface-sunken: #dcdcdc; /* Cose scavate nello sfondo: campi di input, checkbox, barre di avanzamento, bottone premuto. Sempre con shadow-inset. */
+  --surface-raised: #efefef; /* Menu, popover, finestre di dialogo che galleggiano sopra la vista. Sempre con shadow-pop. */
+  --line: #cccccc; /* Divisori e griglia del calendario. Solo decorativo: non usarlo come bordo di un controllo. */
+  --line-strong: #777777; /* Bordo sottile di input e checkbox, insieme a shadow-inset. Almeno 3:1 su bg in entrambi i temi: le ombre da sole non bastano per vedere un campo. */
+  --ink: #1a1a1a; /* Testo principale su bg, surface, surface-sunken, surface-raised e accent-soft. */
+  --ink-muted: #525252; /* Testo secondario (orari, date, metadati, hint) su bg, surface, surface-sunken, surface-raised e accent-soft. */
+  --accent: #222222; /* Colore d'accento: nero nel tema chiaro, grigio chiarissimo in quello scuro. Bottone primario, link, elemento selezionato, anello di focus. Leggibile come testo su bg, surface-sunken e accent-soft. */
+  --accent-hover: #3d3d3d; /* Punto chiaro del gradiente del bottone primario. Non usarlo come colore di hover: il primario all'hover cambia solo ombra. */
+  --on-accent: #ffffff; /* Testo e icone sopra un riempimento accent: bianco nel tema chiaro, quasi nero in quello scuro. */
+  --accent-soft: #d1d1d1; /* Sfondo grigio della voce selezionata in barra laterale e della scelta votata in un sondaggio. */
+  --marigold: #f0ad2e; /* Accento: il giorno di oggi, l'indicatore dell'ora attuale, i promemoria. Solo come riempimento: nel tema chiaro è troppo chiaro per testo o linee sottili. */
+  --on-marigold: #2a1d00; /* Testo sopra un riempimento marigold, in entrambi i temi. */
+  --marigold-strong: #855400; /* Testo e icone dei promemoria su bg, surface e surface-sunken. */
+  --danger: #ad3622; /* Errori, eliminazioni, scadenze superate. Sempre insieme a una parola o un'icona. */
+  --success: #216e45; /* Conferme e attività completate. Sempre insieme a una parola o un'icona, mai distinto da danger solo per tinta. */
+  --cal-sky: #2a74bf; /* Colore di calendario/etichetta (es. Scuola). Striscia laterale degli eventi e pallino delle etichette. */
+  --cal-coral: #c95637; /* Colore di calendario/etichetta (es. Sport). Striscia degli eventi e pallino delle etichette. */
+  --cal-plum: #8049ab; /* Colore di calendario/etichetta (es. Famiglia). Striscia degli eventi e pallino delle etichette. */
+  --cal-moss: #557f2a; /* Colore di calendario/etichetta (es. Personale). Striscia degli eventi e pallino delle etichette. */
+  --cal-graphite: var(--accent); /* Colore di calendario predefinito (grafite): il calendario personale appena creato. */
+  --shadow-raised: 6px 6px 12px rgba(150, 150, 150, 0.55), -6px -6px 12px rgba(255, 255, 255, 0.9); /* Card e pannelli che escono dallo sfondo: attività, sondaggi, card della barra laterale. */
+  --shadow-raised-sm: 3px 3px 6px rgba(150, 150, 150, 0.5), -3px -3px 6px rgba(255, 255, 255, 0.9); /* Controlli piccoli in rilievo: etichette, opzioni di un sondaggio, eventi, hover del bottone ghost. */
+  --shadow-button: 6px 6px 12px rgba(150, 150, 150, 0.6), -6px -6px 12px rgba(255, 255, 255, 0.95); /* Bottoni a riposo: rilievo più marcato delle card, così sembrano uscire dallo schermo. Va sotto il bottone (::before con z-index -1), insieme a shadow-button-edge sul bottone. */
+  --shadow-button-hover: 10px 10px 20px rgba(150, 150, 150, 0.6), -10px -10px 20px rgba(255, 255, 255, 0.95); /* Bottone sotto il puntatore: l'ombra si allunga e il bottone sale di 1px. Come shadow-button, va sotto il bottone. */
+  --shadow-button-edge: inset 1px 1px 0 rgba(255, 255, 255, 0.8); /* Filo di luce sul bordo in alto a sinistra dei bottoni, sul bottone stesso. shadow-button e shadow-button-hover vanno sotto il bottone (::before), non sul bottone. */
+  --shadow-inset: inset 3px 3px 6px rgba(150, 150, 150, 0.55), inset -3px -3px 6px rgba(255, 255, 255, 0.85); /* Cose scavate: campi di input, checkbox vuote, bottone premuto, attività completata, opzione votata. */
+  --shadow-inset-accent: inset 3px 3px 6px rgba(0, 0, 0, 0.6); /* Bottone primario premuto: scavato sul riempimento accent. */
+  --shadow-glow: 0 6px 16px rgba(24, 24, 24, 0.32); /* Alone sotto il bottone primario e la checkbox spuntata. Una o due volte per schermata. */
+  --shadow-pop: 12px 12px 28px rgba(150, 150, 150, 0.6), -8px -8px 24px rgba(255, 255, 255, 0.8); /* Solo per ciò che galleggia sopra la vista: menu, popover, dialoghi, evento trascinato. */
+}
+[data-theme="dark"] {
+  --bg: #1e1e1e;
+  --surface: var(--bg);
+  --surface-sunken: #171717;
+  --surface-raised: #262626;
+  --line: #2e2e2e;
+  --line-strong: #757575;
+  --ink: #ececec;
+  --ink-muted: #a8a8a8;
+  --accent: #e6e6e6;
+  --accent-hover: #ffffff;
+  --on-accent: #171717;
+  --accent-soft: #333333;
+  --marigold: #f4bf55;
+  --on-marigold: #2a1d00;
+  --marigold-strong: #f4bf55;
+  --danger: #f07c66;
+  --success: #5cc98d;
+  --cal-sky: #6aaef0;
+  --cal-coral: #f08a6c;
+  --cal-plum: #bb8ae6;
+  --cal-moss: #95c45f;
+  --cal-graphite: var(--accent);
+  --shadow-raised: 6px 6px 12px rgba(0, 0, 0, 0.55), -6px -6px 12px rgba(255, 255, 255, 0.045);
+  --shadow-raised-sm: 3px 3px 6px rgba(0, 0, 0, 0.5), -3px -3px 6px rgba(255, 255, 255, 0.045);
+  --shadow-button: 6px 6px 12px rgba(0, 0, 0, 0.6), -6px -6px 12px rgba(255, 255, 255, 0.05);
+  --shadow-button-hover: 10px 10px 20px rgba(0, 0, 0, 0.65), -10px -10px 20px rgba(255, 255, 255, 0.06);
+  --shadow-button-edge: inset 1px 1px 0 rgba(255, 255, 255, 0.08);
+  --shadow-inset: inset 3px 3px 6px rgba(0, 0, 0, 0.6), inset -3px -3px 6px rgba(255, 255, 255, 0.045);
+  --shadow-inset-accent: inset 3px 3px 6px rgba(0, 0, 0, 0.3), inset -3px -3px 6px rgba(255, 255, 255, 0.7);
+  --shadow-glow: 0 6px 18px rgba(230, 230, 230, 0.16);
+  --shadow-pop: 12px 12px 28px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(236, 236, 236, 0.06);
+}
+:root {
+  --space-1: 4px; /* Distanza tra icona e testo, tra pallino e nome di un'etichetta. */
+  --space-2: 8px; /* Padding verticale dei bottoni, spazio tra elementi di una lista compatta. */
+  --space-3: 12px; /* Padding interno di eventi e attività. */
+  --space-4: 16px; /* Padding delle card, margine laterale minimo su telefono. */
+  --space-6: 24px; /* Spazio tra sezioni dentro una vista; passo della griglia oraria (mezz'ora). */
+  --space-8: 32px; /* Padding delle viste su desktop. */
+  --space-12: 48px; /* Spazio tra le sezioni della landing page. */
+  --radius-sm: 4px; /* Checkbox, etichette, eventi brevi nel calendario. */
+  --radius-md: 10px; /* Bottoni, campi di input, eventi, voci della barra laterale. */
+  --radius-lg: 12px; /* Card, dialoghi, pannelli. Gli angoli morbidi fanno parte del neumorfismo. */
+  --radius-pill: 999px; /* Pillole di filtro, etichette, avatar, interruttori, barre dei sondaggi. */
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --text-display: 700 40px/44px var(--font-display); /* Titoli della landing page e schermate di benvenuto. Una volta per schermata. */
+  --text-title: 650 28px/34px var(--font-display); /* Titolo della vista (mese del calendario, titolo di una nota). */
+  --text-heading: 600 20px/26px var(--font-display); /* Titoli di sezione dentro una vista, intestazioni di card e dialoghi. */
+  --text-body: 400 15px/22px var(--font-sans); /* Testo corrente, note, campi di input. */
+  --text-body-strong: 600 15px/22px var(--font-sans); /* Titolo di un'attività o di un evento, etichette dei bottoni. */
+  --text-small: 400 13px/18px var(--font-sans); /* Orari, date, metadati, hint sotto un campo. */
+  --text-label: 700 12px/16px var(--font-sans); /* Intestazioni dei gruppi in barra laterale e giorni della settimana, sempre in maiuscolo. */
+  --text-mono: 400 13px/20px var(--font-mono); /* Scorciatoie da tastiera, codice e link interni nelle note in Markdown. */
+}
+.display {
+  font-family: var(--font-display);
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 34px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+.heading {
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.body {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.body-strong {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.small {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.label {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.mono {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+}

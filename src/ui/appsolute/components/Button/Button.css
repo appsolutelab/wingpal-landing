@@ -1,0 +1,33 @@
+/* Button: esce dallo schermo a riposo (gradiente 145° + shadow-button), sale al passaggio, scavato quando lo premi.
+   Le ombre esterne stanno su ::before con z-index -1 e il contenitore dei bottoni isola l'impilamento:
+   così tutte le ombre stanno sotto tutti i bottoni e nessuna copre un vicino. Per lo stesso motivo
+   i movimenti usano top e non transform (transform porterebbe l'ombra sopra i vicini). */
+*:has(> .ap-btn) { isolation: isolate; }
+.ap-btn { position: relative; top: 0; display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: 44px; padding: var(--space-2) var(--space-6); border-radius: var(--radius-md); border: 0; background: linear-gradient(145deg, var(--surface-raised), var(--surface-sunken)); color: var(--ink); box-shadow: var(--shadow-button-edge); font: 600 15px/22px var(--font-sans); cursor: pointer; transition: box-shadow .15s, color .15s, top .12s ease-out; }
+.ap-btn::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; box-shadow: var(--shadow-button); pointer-events: none; transition: box-shadow .15s; }
+a.ap-btn { text-decoration: none; box-sizing: border-box; }
+.ap-btn-sm { min-height: 34px; padding: var(--space-1) var(--space-4); font-size: 13px; line-height: 18px; }
+.ap-btn:hover:not(:disabled) { top: -1px; }
+.ap-btn:hover:not(:disabled)::before { box-shadow: var(--shadow-button-hover); }
+.ap-btn:active, .ap-btn[aria-pressed="true"] { box-shadow: var(--shadow-inset); background: linear-gradient(145deg, var(--surface-sunken), var(--surface-raised)); }
+.ap-btn:active:not(:disabled) { top: 1px; }
+/* Al rilascio il bottone torna su con un piccolo rimbalzo. Due classi uguali per poter ripartire a ogni click. */
+.ap-pop-1 { animation: ap-press-1 .24s ease-out; }
+.ap-pop-2 { animation: ap-press-2 .24s ease-out; }
+@keyframes ap-press-1 { 0% { top: 1px; } 55% { top: -3px; } }
+@keyframes ap-press-2 { 0% { top: 1px; } 55% { top: -3px; } }
+/* Il primario resta dello stesso colore al passaggio: cambia solo l'ombra, così non lampeggia. */
+/* Niente filo di luce bianco sul primario: sul nero sembrava un bordo. Il gradiente basta a dare il rilievo. */
+.ap-btn-primary { background: var(--accent) linear-gradient(145deg, var(--accent-hover), var(--accent)); color: var(--on-accent); box-shadow: none; }
+.ap-btn-primary::before { box-shadow: var(--shadow-button), var(--shadow-glow); }
+.ap-btn-primary:hover:not(:disabled)::before { box-shadow: var(--shadow-button-hover), var(--shadow-glow); }
+.ap-btn-primary:active, .ap-btn-primary[aria-pressed="true"] { box-shadow: var(--shadow-inset-accent); background: var(--accent) linear-gradient(145deg, var(--accent), var(--accent-hover)); }
+.ap-btn-ghost { background: transparent; color: var(--accent); box-shadow: none; }
+.ap-btn-ghost::before { box-shadow: none; }
+.ap-btn-ghost:hover:not(:disabled) { top: 0; }
+.ap-btn-ghost:hover:not(:disabled)::before { box-shadow: var(--shadow-raised-sm); }
+/* Premuto: niente ombra esterna. Dopo le regole di hover e con la stessa specificità, così vince anche col puntatore sopra. */
+.ap-btn:active:not(:disabled)::before, .ap-btn[aria-pressed="true"]:not(:disabled)::before { box-shadow: none; }
+.ap-btn-danger { color: var(--danger); }
+.ap-btn:disabled { box-shadow: none; background: var(--surface-sunken); color: var(--ink-muted); opacity: .7; cursor: not-allowed; }
+.ap-btn:disabled::before { box-shadow: none; }

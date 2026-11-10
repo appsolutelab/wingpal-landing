@@ -1,0 +1,8 @@
+/* FeatureCard: card in rilievo con l'icona scavata in un pozzetto. */
+.ap-feature { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); padding: var(--space-6); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-raised); color: var(--ink); }
+.ap-feature-icon { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: var(--space-1); border-radius: var(--radius-md); background: var(--surface-sunken); box-shadow: var(--shadow-inset); color: var(--ink); }
+.ap-feature-title { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin: 0; font: var(--text-heading); color: var(--ink); }
+.ap-feature-status { padding: 2px var(--space-2); border-radius: var(--radius-pill); border: 1px solid var(--line-strong); font: var(--text-small); font-weight: 600; color: var(--ink-muted); }
+.ap-feature-text { font: var(--text-body); color: var(--ink-muted); }
+.ap-feature-text > p { margin: 0; }
+.ap-feature-link { margin-top: auto; padding-top: var(--space-1); }

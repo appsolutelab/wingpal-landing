@@ -1,0 +1,15 @@
+/* Appsolute UI — importa questo file una volta sola (es. in main.tsx). */
+@import "./tokens.css";
+@import "./base.css";
+@import "./components/Button/Button.css";
+@import "./components/IconButton/IconButton.css";
+@import "./components/TextField/TextField.css";
+@import "./components/Switch/Switch.css";
+@import "./components/Navbar/Navbar.css";
+@import "./components/Hero/Hero.css";
+@import "./components/Section/Section.css";
+@import "./components/FeatureCard/FeatureCard.css";
+@import "./components/CodeBlock/CodeBlock.css";
+@import "./components/RepoCard/RepoCard.css";
+@import "./components/Footer/Footer.css";
+@import "./reduced-motion.css";

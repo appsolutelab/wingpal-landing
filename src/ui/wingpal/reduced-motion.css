@@ -1,0 +1,6 @@
+/* Chi ha chiesto meno movimento nel sistema operativo non vede animazioni: gli stati cambiano subito. */
+@media (prefers-reduced-motion: reduce) {
+  .ap-task, .ap-check, .ap-task-title, .ap-task-title-text, .ap-poll-opt, .ap-poll-bar { transition: none; animation: none !important; }
+  .ap-check svg path { animation: none !important; }
+  .ap-poll-opt:active { transform: none; }
+}

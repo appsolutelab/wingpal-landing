@@ -1,0 +1,38 @@
+/* Stili della sola landing WingPal (prefisso wp-). Colori, ombre e spaziature vengono dai token. */
+
+/* Logo come maschera: prende il colore da --ink, quindi segue anche il tema forzato dal pulsante. */
+.wp-logo { display: block; background: var(--ink); mask: url("./ui/wingpal/assets/logo-w.svg") center / contain no-repeat; -webkit-mask: url("./ui/wingpal/assets/logo-w.svg") center / contain no-repeat; }
+
+/* Hero: riga di stato sotto il titolo, anteprima a fianco */
+.wp-hero-status { display: block; margin-bottom: var(--space-3); font: var(--text-small); color: var(--ink-muted); }
+.wp-preview { display: flex; flex-direction: column; gap: var(--space-4); max-width: 420px; margin-inline: auto; padding: var(--space-6); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-raised); }
+.wp-preview-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.wp-preview-title { font: var(--text-heading); color: var(--ink); }
+
+/* Collegamenti: evento → nota → attività */
+.wp-chain { display: grid; gap: var(--space-8); margin: 0; padding: 0; list-style: none; }
+.wp-chain > li { display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; }
+.wp-chain-step { font: var(--text-label); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); }
+.wp-note { display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-4); border-radius: var(--radius-lg); border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow-raised); font: var(--text-mono); color: var(--ink-muted); }
+.wp-note-title { color: var(--ink); font-weight: 600; }
+@media (min-width: 900px) {
+  .wp-chain { grid-template-columns: repeat(3, 1fr); align-items: start; }
+}
+
+/* Roadmap: elenco ordinato di card, il numero sta nel pozzetto dell'icona */
+.wp-roadmap { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-6); margin: 0; padding: 0; list-style: none; }
+.wp-roadmap > li { display: grid; }
+.wp-roadmap-n { font: var(--text-label); font-variant-numeric: tabular-nums; }
+
+/* Chi siamo */
+.wp-about { display: grid; gap: var(--space-8); align-items: start; }
+.wp-about-text { display: flex; flex-direction: column; gap: var(--space-4); max-width: 640px; }
+.wp-about-text p { margin: 0; }
+/* Logo appsolute (simbolo + scritta) come maschere su --ink, come .wp-logo */
+.wp-about-logo { display: flex; align-items: center; gap: var(--space-3); }
+.wp-about-mark, .wp-about-wordmark { height: 48px; background: var(--ink); }
+.wp-about-mark { aspect-ratio: 686 / 678; mask: url("./assets/appsolute-mark.svg") center / contain no-repeat; -webkit-mask: url("./assets/appsolute-mark.svg") center / contain no-repeat; }
+.wp-about-wordmark { aspect-ratio: 1124 / 300; mask: url("./assets/appsolute-wordmark.svg") center / contain no-repeat; -webkit-mask: url("./assets/appsolute-wordmark.svg") center / contain no-repeat; }
+@media (min-width: 900px) {
+  .wp-about { grid-template-columns: 1.4fr 1fr; }
+}

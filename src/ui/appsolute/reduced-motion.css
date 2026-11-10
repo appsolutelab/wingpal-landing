@@ -1,0 +1,6 @@
+/* Chi ha chiesto meno movimento nel sistema operativo non vede animazioni: gli stati cambiano subito. */
+@media (prefers-reduced-motion: reduce) {
+  .ap-btn, .ap-field input, .ap-field label, .ap-switch-opt, .ap-nav-link, .ap-repo, .ap-feature, .ap-switch-knob { transition: none; animation: none !important; }
+  .ap-btn:hover:not(:disabled), .ap-btn:active:not(:disabled), .ap-repo:hover { top: 0; }
+  .ap-btn::before { transition: none; }
+}

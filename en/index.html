@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script>
+      // tema salvato, altrimenti quello del sistema: prima di tutto il resto, così non lampeggia
+      (function () {
+        var key = "wingpal-theme", t = null;
+        try { t = localStorage.getItem(key); } catch (e) {}
+        if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", t);
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WingPal · calendar, notes and tasks in one place</title>
+    <meta name="description" content="WingPal is a free, open source app that keeps your calendar, notes and tasks linked. It runs locally, with no account." />
+    <link rel="alternate" hreflang="en" href="/wingpal-landing/en/" />
+    <link rel="alternate" hreflang="it" href="/wingpal-landing/" />
+    <link rel="icon" type="image/svg+xml" href="/src/logo-favicon.svg" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

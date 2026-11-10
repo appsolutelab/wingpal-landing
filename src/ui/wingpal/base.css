@@ -1,0 +1,4 @@
+/* WingPal — stili dei componenti di prodotto. Si appoggiano agli stili di base di Appsolute (font, body, link). */
+
+/* Focus: sempre visibile, anche sopra le ombre */
+.ap-check:focus-visible, .ap-poll-opt:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }

@@ -1,0 +1,21 @@
+/* TaskItem: card in rilievo; quando è fatta si "schiaccia" nello sfondo */
+.ap-task { display: flex; align-items: flex-start; gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-raised); transition: box-shadow .25s ease-out, background-color .25s ease-out; }
+.ap-task-done { box-shadow: var(--shadow-inset); background: var(--surface-sunken); }
+.ap-check { flex: none; width: 22px; height: 22px; margin: 0; border-radius: var(--radius-sm); border: 1px solid var(--line-strong); background: var(--surface-sunken); box-shadow: var(--shadow-inset); display: grid; place-items: center; cursor: pointer; padding: 0; color: var(--on-accent); transition: background-color .2s, border-color .2s, box-shadow .2s; }
+.ap-check svg path { stroke-dasharray: 22; stroke-dashoffset: 0; }
+/* Spunta: la card si assesta, la checkbox fa un piccolo salto e il segno si disegna. */
+.ap-just-done { animation: ap-task-settle .36s ease-out; }
+.ap-just-done .ap-check { animation: ap-check-pop .34s cubic-bezier(.3, 1.6, .5, 1); }
+.ap-just-done .ap-check svg path { animation: ap-check-draw .26s .08s ease-out both; }
+@keyframes ap-task-settle { 0% { transform: scale(1); } 40% { transform: scale(.985); } 100% { transform: scale(1); } }
+@keyframes ap-check-pop { 0% { transform: scale(.75); } 60% { transform: scale(1.15); } 100% { transform: scale(1); } }
+@keyframes ap-check-draw { from { stroke-dashoffset: 22; } to { stroke-dashoffset: 0; } }
+.ap-task-done .ap-check { background: var(--accent); border-color: var(--accent); box-shadow: var(--shadow-glow); }
+.ap-task-body { display: flex; flex-direction: column; gap: var(--space-1); min-width: 0; flex: 1; }
+.ap-task-title { font-weight: 600; color: var(--ink); transition: color .25s; }
+/* La riga che barra il titolo si allunga da sinistra a destra. */
+.ap-task-title-text { background: linear-gradient(currentColor, currentColor) no-repeat 0 58% / 0 1.5px; -webkit-box-decoration-break: clone; box-decoration-break: clone; transition: background-size .3s ease-out; }
+.ap-task-done .ap-task-title { color: var(--ink-muted); }
+.ap-task-done .ap-task-title-text { background-size: 100% 1.5px; }
+.ap-task-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); font-size: 13px; line-height: 18px; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.ap-task-late { color: var(--danger); font-weight: 600; }

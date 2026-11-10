@@ -1,0 +1,14 @@
+/* Section: contenitore largo al massimo 1120px con l'intestazione della sezione; space-12 tra una sezione e l'altra. */
+.ap-section { padding: var(--space-12) var(--space-4); scroll-margin-top: 96px; }
+.ap-section-sunken { background: var(--surface-sunken); }
+.ap-section-inner { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--space-8); }
+.ap-section-head { display: flex; flex-direction: column; gap: var(--space-2); max-width: 640px; }
+.ap-section-center .ap-section-head { align-self: center; align-items: center; text-align: center; }
+.ap-section-eyebrow { margin: 0; font: var(--text-label); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); }
+.ap-section-title { margin: 0; font: var(--text-title); letter-spacing: -0.01em; color: var(--ink); text-wrap: balance; }
+.ap-section-lead { margin: 0; font: var(--text-body); color: var(--ink-muted); }
+.ap-section-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-6); }
+
+@media (min-width: 760px) {
+  .ap-section { padding: var(--space-12) var(--space-8); }
+}

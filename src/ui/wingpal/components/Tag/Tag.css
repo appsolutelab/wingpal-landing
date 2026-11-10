@@ -1,0 +1,4 @@
+/* Tag: piccola pillola in rilievo */
+.ap-tag { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-1) var(--space-3); border-radius: var(--radius-pill); background: var(--surface); box-shadow: var(--shadow-raised-sm); color: var(--ink); font: 600 13px/18px var(--font-sans); }
+.ap-tag-dot { width: 8px; height: 8px; border-radius: var(--radius-pill); background: var(--tag, var(--cal-graphite)); flex: none; }
+.ap-tag-reminder { background: var(--marigold); color: var(--on-marigold); }
