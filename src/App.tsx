@@ -112,7 +112,7 @@ export function App({ lang }: { lang: Lang }) {
           ))}
         </Section>
 
-        <Section id="collegamenti" tone="sunken" align="center" eyebrow={t.links.eyebrow} title={t.links.title} lead={t.links.lead}>
+        <Section id="collegamenti" align="center" eyebrow={t.links.eyebrow} title={t.links.title} lead={t.links.lead}>
           <ol className="wp-chain" role="list">
             <li>
               <span className="wp-chain-step">{t.links.steps[0]}</span>
