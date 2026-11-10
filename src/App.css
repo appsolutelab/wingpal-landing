@@ -36,3 +36,8 @@
 @media (min-width: 900px) {
   .wp-about { grid-template-columns: 1.4fr 1fr; }
 }
+
+/* Scorrimento morbido verso le ancore, solo per chi non ha chiesto meno movimento */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
