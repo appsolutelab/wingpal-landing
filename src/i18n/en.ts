@@ -97,6 +97,20 @@ export const en: Texts = {
     repoDescription: "The code of this page. The app's code will live next to it.",
     repoLink: "View the code on GitHub",
   },
+  privacy: {
+    title: "Privacy policy",
+    lead: "This site uses no cookies, has no forms and does not track visitors. Below is the little data that is still processed.",
+    updated: "Last updated: 13 November 2026",
+    sections: [
+      { title: "Data controller", text: "The controller is appsolute, a project of ITIS G. Cardano in Pavia, Italy. For questions about this policy or to exercise your rights, contact us through our repository.", link: { label: "Open an issue on GitHub", href: "https://github.com/appsolutelab/wingpal-landing/issues" } },
+      { title: "Hosting", text: "The site is hosted on GitHub Pages. Like any web server, GitHub logs the IP address of visitors and some technical browser data, for security and to run the service. We have no access to this data. GitHub may also process it in the United States.", link: { label: "GitHub privacy statement", href: "https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" } },
+      { title: "Fonts", text: "The fonts on this page are downloaded from Google Fonts. To deliver them, Google receives your IP address.", link: { label: "Google Fonts privacy", href: "https://developers.google.com/fonts/faq/privacy" } },
+      { title: "Preferences saved in your browser", text: "If you switch between light and dark theme, your choice is saved in your browser. It stays on your device, is never sent to us, and you can delete it from your browser settings. We use no cookies." },
+      { title: "Why we process this data", text: "The technical data is only used to show you the site securely. The legal basis is legitimate interest (Art. 6(1)(f) GDPR)." },
+      { title: "Your rights", text: "You can ask to access, correct or delete your data, to restrict its processing, or object to it. You can also lodge a complaint with the Italian data protection authority (Garante per la protezione dei dati personali).", link: { label: "Garante website", href: "https://www.garanteprivacy.it" } },
+      { title: "The WingPal app", text: "This policy covers this website only. The WingPal app runs locally and sends us no data. It will get its own policy when it is released." },
+    ],
+  },
   footer: {
     tagline: "Calendar, notes and tasks in one place.",
     nav: "Site links",
@@ -104,6 +118,7 @@ export const en: Texts = {
     project: "Project",
     code: "WingPal code",
     license: "AGPL-3.0 license",
+    privacy: "Privacy",
     bottom: "WingPal is open source, under the AGPL-3.0 license. No ads, no tracking.",
   },
 };

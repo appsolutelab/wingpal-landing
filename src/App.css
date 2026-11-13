@@ -41,3 +41,11 @@
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
+
+/* Pagina privacy: testo in colonna stretta, leggibile */
+.wp-privacy { display: flex; flex-direction: column; gap: var(--space-6); max-width: 720px; }
+.wp-privacy h2 { margin: 0 0 var(--space-2); font: var(--text-heading); color: var(--ink); }
+.wp-privacy p { margin: 0; }
+/* Link nel testo: colore del testo + sottolineatura, così il contrasto regge in entrambi i temi */
+.wp-privacy p a { color: var(--ink); text-decoration: underline; }
+.wp-privacy-updated { font: var(--text-small); color: var(--ink-muted); }

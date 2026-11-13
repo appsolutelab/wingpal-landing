@@ -1,4 +1,6 @@
 /* Testi italiani. en.ts ha le stesse chiavi: lo controlla TypeScript. */
+type PrivacySection = { title: string; text: string; link?: { label: string; href: string } };
+
 export const it = {
   nav: {
     features: "Funzioni",
@@ -96,6 +98,20 @@ export const it = {
     repoDescription: "Il codice di questa pagina. Quello dell'app arriva qui accanto.",
     repoLink: "Vedi il codice su GitHub",
   },
+  privacy: {
+    title: "Informativa sulla privacy",
+    lead: "Questo sito non usa cookie, non ha moduli e non traccia chi lo visita. Qui sotto trovi i pochi dati che vengono comunque trattati.",
+    updated: "Ultimo aggiornamento: 13 novembre 2026",
+    sections: [
+      { title: "Titolare del trattamento", text: "Il titolare è appsolute, progetto dell'ITIS G. Cardano di Pavia. Per domande su questa informativa o per esercitare i tuoi diritti, contattaci dal nostro repository.", link: { label: "Apri una segnalazione su GitHub", href: "https://github.com/appsolutelab/wingpal-landing/issues" } },
+      { title: "Hosting", text: "Il sito è ospitato su GitHub Pages. Come ogni server web, GitHub registra l'indirizzo IP di chi visita la pagina e alcuni dati tecnici del browser, per sicurezza e per far funzionare il servizio. Noi non abbiamo accesso a questi dati. GitHub può trattarli anche negli Stati Uniti.", link: { label: "Informativa sulla privacy di GitHub", href: "https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" } },
+      { title: "Caratteri tipografici", text: "I caratteri della pagina vengono scaricati da Google Fonts. Per inviarli, Google riceve il tuo indirizzo IP.", link: { label: "Privacy di Google Fonts", href: "https://developers.google.com/fonts/faq/privacy" } },
+      { title: "Preferenze salvate nel browser", text: "Se cambi il tema chiaro o scuro, la scelta viene salvata nel tuo browser. Resta sul tuo dispositivo, non ci viene inviata, e puoi cancellarla dalle impostazioni del browser. Non usiamo cookie." },
+      { title: "Perché trattiamo questi dati", text: "I dati tecnici servono solo a mostrarti il sito in modo sicuro. La base giuridica è il legittimo interesse (art. 6, par. 1, lett. f del GDPR)." },
+      { title: "I tuoi diritti", text: "Puoi chiedere di accedere ai tuoi dati, correggerli, cancellarli, limitarne il trattamento od opporti. Puoi anche presentare un reclamo al Garante per la protezione dei dati personali.", link: { label: "Sito del Garante", href: "https://www.garanteprivacy.it" } },
+      { title: "L'app WingPal", text: "Questa informativa riguarda solo questo sito. L'app WingPal funziona in locale e non ci invia dati. Quando uscirà avrà la sua informativa." },
+    ] as PrivacySection[],
+  },
   footer: {
     tagline: "Calendario, note e attività in un posto solo.",
     nav: "Link del sito",
@@ -103,6 +119,7 @@ export const it = {
     project: "Progetto",
     code: "Codice di WingPal",
     license: "Licenza AGPL-3.0",
+    privacy: "Privacy",
     bottom: "WingPal è open source, con licenza AGPL-3.0. Niente pubblicità, niente tracciamento.",
   },
 };

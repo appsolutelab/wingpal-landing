@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" data-page="privacy">
+  <head>
+    <meta charset="utf-8" />
+    <script>
+      // tema salvato, altrimenti quello del sistema: prima di tutto il resto, così non lampeggia
+      (function () {
+        var key = "wingpal-theme", t = null;
+        try { t = localStorage.getItem(key); } catch (e) {}
+        if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", t);
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy policy · WingPal</title>
+    <meta name="description" content="What data the WingPal website handles: no cookies, no forms, no tracking." />
+    <link rel="alternate" hreflang="en" href="https://appsolutelab.github.io/wingpal-landing/en/privacy/" />
+    <link rel="alternate" hreflang="it" href="https://appsolutelab.github.io/wingpal-landing/privacy/" />
+    <link rel="icon" type="image/svg+xml" href="/src/logo-favicon.svg" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

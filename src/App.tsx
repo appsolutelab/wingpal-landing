@@ -20,6 +20,7 @@ const LICENSE_URL = "https://www.gnu.org/licenses/agpl-3.0.html";
 const THEME_KEY = "wingpal-theme";
 
 const home = (lang: Lang) => import.meta.env.BASE_URL + (lang === "en" ? "en/" : "");
+const privacyUrl = (lang: Lang) => home(lang) + "privacy/";
 const icon = (I: typeof Bell) => <I size={20} strokeWidth={1.75} />;
 
 function Logo() {
@@ -61,8 +62,30 @@ function HeroPreview({ t }: { t: Texts["preview"] }) {
   );
 }
 
-export function App({ lang }: { lang: Lang }) {
+function Privacy({ t }: { t: Texts["privacy"] }) {
+  return (
+    <section className="ap-section" aria-labelledby="privacy-title">
+      <div className="ap-section-inner wp-privacy">
+        <header className="ap-section-head">
+          <h1 className="ap-section-title" id="privacy-title">{t.title}</h1>
+          <p className="ap-section-lead">{t.lead}</p>
+        </header>
+        {t.sections.map((x) => (
+          <div key={x.title}>
+            <h2>{x.title}</h2>
+            <p>{x.text} {x.link ? <a href={x.link.href}>{x.link.label}</a> : null}</p>
+          </div>
+        ))}
+        <p className="wp-privacy-updated">{t.updated}</p>
+      </div>
+    </section>
+  );
+}
+
+export function App({ lang, page = "home" }: { lang: Lang; page?: "home" | "privacy" }) {
   const t = lang === "en" ? en : it;
+  const privacy = page === "privacy";
+  const base = privacy ? home(lang) : ""; // dalla pagina privacy le ancore tornano alla home
   // Il tema si salva solo quando lo sceglie la persona: fino ad allora la pagina segue il sistema operativo.
   const [theme, setTheme] = useState<Theme>(() => getInitialTheme(THEME_KEY));
   const changeTheme = (next: Theme) => { setTheme(next); applyTheme(next, THEME_KEY); };
@@ -79,10 +102,10 @@ export function App({ lang }: { lang: Lang }) {
   }, []);
 
   const links = [
-    { label: t.nav.features, href: "#funzioni" },
-    { label: t.nav.principles, href: "#principi" },
-    { label: t.nav.roadmap, href: "#roadmap" },
-    { label: t.nav.about, href: "#chi-siamo" },
+    { label: t.nav.features, href: base + "#funzioni" },
+    { label: t.nav.principles, href: base + "#principi" },
+    { label: t.nav.roadmap, href: base + "#roadmap" },
+    { label: t.nav.about, href: base + "#chi-siamo" },
   ];
   const featureIcons = [CalendarDays, ListTodo, FileText, Bell];
   const principleIcons = [WifiOff, UserX, EyeOff, Code];
@@ -98,12 +121,13 @@ export function App({ lang }: { lang: Lang }) {
         labels={{ nav: t.nav.main, open: t.nav.open, close: t.nav.close }}
         actions={
           <>
-            <LangSwitch value={lang} label={t.nav.language} onChange={(l) => { window.location.href = home(l as Lang) + window.location.hash; }} />
+            <LangSwitch value={lang} label={t.nav.language} onChange={(l) => { window.location.href = (privacy ? privacyUrl(l as Lang) : home(l as Lang)) + window.location.hash; }} />
             <ThemeToggle theme={theme} onChange={changeTheme} labels={{ label: t.nav.theme, light: t.nav.light, dark: t.nav.dark }} />
           </>
         }
       />
       <main>
+        {privacy ? <Privacy t={t.privacy} /> : <>
         <Hero
           eyebrow={t.hero.eyebrow}
           title={t.hero.title}
@@ -179,6 +203,7 @@ export function App({ lang }: { lang: Lang }) {
             <RepoCard name={REPO_NAME} href={REPO_URL} description={t.about.repoDescription} license="AGPL-3.0" linkLabel={t.about.repoLink} />
           </div>
         </Section>
+        </>}
       </main>
       <Footer
         brand="WingPal"
@@ -187,7 +212,7 @@ export function App({ lang }: { lang: Lang }) {
         navLabel={t.footer.nav}
         columns={[
           { title: t.footer.page, links },
-          { title: t.footer.project, links: [{ label: t.footer.code, href: REPO_URL }, { label: t.footer.license, href: LICENSE_URL }] },
+          { title: t.footer.project, links: [{ label: t.footer.code, href: REPO_URL }, { label: t.footer.license, href: LICENSE_URL }, { label: t.footer.privacy, href: privacyUrl(lang) }] },
         ]}
         bottom={t.footer.bottom}
       />
