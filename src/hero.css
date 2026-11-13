@@ -1,0 +1,48 @@
+/* Hero di WingPal: immagine incorniciata, card "Oggi" sfalsata sopra, etichetta fluttuante. */
+.wp-hero-stage { position: relative; max-width: 520px; margin-inline: auto; }
+.wp-hero-art { border-radius: var(--radius-lg); box-shadow: var(--shadow-raised); overflow: hidden; }
+.wp-hero-img { display: block; width: 100%; height: auto; }
+.wp-hero-img-dark, [data-theme="dark"] .wp-hero-img-light { display: none; }
+[data-theme="dark"] .wp-hero-img-dark { display: block; }
+
+/* La card copre solo la fascia bassa dell'immagine, quasi vuota. */
+.wp-preview.wp-hero-card { position: relative; max-width: none; margin: calc((var(--space-12) + var(--space-6)) * -1) var(--space-3) 0; box-shadow: var(--shadow-pop); }
+.wp-hero-chip { position: absolute; top: var(--space-4); left: var(--space-4); }
+
+@media (min-width: 900px) {
+  .wp-hero-stage { margin-inline: 0; }
+  .wp-hero-art { margin-right: var(--space-8); }
+  .wp-preview.wp-hero-card { margin-inline: var(--space-8) 0; }
+  .wp-hero-chip { left: calc(var(--space-4) * -1); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Ingresso scaglionato: solo "from" + backwards, così a fine animazione non resta nessun transform. */
+  .ap-hero .ap-hero-text > *, .ap-hero .wp-hero-stage { animation: wp-hero-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+  .ap-hero .ap-hero-text > :nth-child(2) { animation-delay: 0.08s; }
+  .ap-hero .ap-hero-text > :nth-child(3) { animation-delay: 0.16s; }
+  .ap-hero .ap-hero-text > :nth-child(4) { animation-delay: 0.24s; }
+  .ap-hero .wp-hero-stage { animation-delay: 0.32s; }
+
+}
+
+/* Solo desktop con mouse: su telefono e tablet il float continuo distrae e consuma batteria senza aggiungere nulla. */
+@media (prefers-reduced-motion: no-preference) and (min-width: 900px) and (hover: hover) and (pointer: fine) {
+  /* Float continuo (transform); la parallasse usa "translate", così le due cose non si pestano. */
+  .wp-hero-art { animation: wp-hero-float 9s ease-in-out infinite alternate; }
+  .wp-hero-card { animation: wp-hero-float 7s ease-in-out -2s infinite alternate-reverse; }
+  .wp-hero-chip { animation: wp-hero-float 5s ease-in-out -1s infinite alternate; }
+  /* Mentre la si usa, la card sta ferma: i bersagli non si muovono sotto il puntatore o il focus. */
+  .wp-hero-card:hover, .wp-hero-card:focus-within { animation-play-state: paused; }
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  /* --wp-hero-px / --wp-hero-py vanno da -0.5 a 0.5: li aggiorna HeroPreview al movimento del mouse. */
+  .wp-hero-art, .wp-hero-card, .wp-hero-chip { transition: translate 0.4s ease-out; }
+  .wp-hero-art { translate: calc(var(--wp-hero-px, 0) * var(--space-3)) calc(var(--wp-hero-py, 0) * var(--space-3)); }
+  .wp-hero-card { translate: calc(var(--wp-hero-px, 0) * var(--space-3) * -1) calc(var(--wp-hero-py, 0) * var(--space-3) * -1); }
+  .wp-hero-chip { translate: calc(var(--wp-hero-px, 0) * var(--space-6)) calc(var(--wp-hero-py, 0) * var(--space-6)); }
+}
+
+@keyframes wp-hero-in { from { opacity: 0; transform: translateY(var(--space-6)); } }
+@keyframes wp-hero-float { from { transform: translateY(var(--space-1)); } to { transform: translateY(calc(var(--space-1) * -1)); } }

@@ -1,0 +1,62 @@
+/* Animazioni della landing sotto l'hero (prefisso wp-). Colori, ombre e spaziature vengono dai token.
+   Tutto il movimento sta dentro prefers-reduced-motion: no-preference; lo stato nascosto esiste solo
+   con la classe wp-motion, che mette initMotion() (motion.ts): senza JS la pagina è subito visibile. */
+
+:root { --wp-ease: cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* Collegamenti, desktop: una linea unisce le etichette dei tre passi (evento → nota → attività). */
+@media (min-width: 900px) {
+  .wp-chain > li:not(:last-child) > .wp-chain-step { display: flex; align-items: center; gap: var(--space-3); }
+  .wp-chain > li:not(:last-child) > .wp-chain-step::after { content: ""; flex: 1; margin-right: calc(var(--space-3) - var(--space-8)); border-top: 1px solid var(--accent); transform-origin: left; }
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  /* 1. Reveal allo scroll: solo opacity e transform, quindi nessuno spostamento del layout. */
+  .wp-motion .wp-reveal:not(.wp-in) { opacity: 0; transform: translateY(var(--space-6)); }
+  /* fill backwards: finita l'animazione il transform torna libero per l'hover delle card */
+  .wp-reveal.wp-in { animation: wp-rise 600ms var(--wp-ease) backwards; animation-delay: calc(var(--wp-i, 0) * 80ms); }
+  @keyframes wp-rise { from { opacity: 0; transform: translateY(var(--space-6)); } }
+
+  /* 3b. Catena: i tre passi entrano uno dopo l'altro, poi la linea si disegna verso il passo seguente. */
+  .wp-chain > .wp-reveal.wp-in { animation-duration: 700ms; animation-delay: calc(var(--wp-i, 0) * 180ms); }
+  .wp-motion .wp-chain > li > .wp-chain-step::after { transform: scaleX(0); transition: transform 700ms var(--wp-ease) calc(var(--wp-i, 0) * 180ms + 300ms); }
+  .wp-motion .wp-chain > li.wp-in > .wp-chain-step::after { transform: scaleX(1); }
+
+  /* 3a. Barra di avanzamento dello scroll, sopra la navbar (z-index 10). Solo decorativa. */
+  @supports (animation-timeline: scroll()) {
+    body::before { content: ""; position: fixed; inset: 0 0 auto; z-index: 11; height: calc(var(--space-1) / 2); background: var(--accent); transform-origin: left; pointer-events: none; animation: wp-progress linear both; animation-timeline: scroll(root); }
+    @keyframes wp-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  }
+}
+
+@media screen and (prefers-reduced-motion: no-preference) and (hover: hover) {
+  /* 2. Card: si sollevano sotto il puntatore o quando il focus è al loro interno; l'icona si muove
+     con loro, così lo stato non dipende solo dall'ombra. Il focus ring del design system non cambia. */
+  main > .ap-section .ap-feature, .wp-note { transition: transform 400ms var(--wp-ease), box-shadow 400ms var(--wp-ease); }
+  main > .ap-section .ap-feature:hover, main > .ap-section .ap-feature:focus-within, .wp-note:hover { transform: translateY(calc(-1 * var(--space-1))); box-shadow: var(--shadow-button-hover); }
+  main > .ap-section .ap-feature-icon > * { transition: transform 400ms var(--wp-ease); }
+  main > .ap-section .ap-feature:hover .ap-feature-icon > *, main > .ap-section .ap-feature:focus-within .ap-feature-icon > * { transform: scale(1.12) rotate(-6deg); }
+}
+
+/* Telefono (sotto 760px, come la navbar del design system). */
+@media screen and (prefers-reduced-motion: no-preference) and (max-width: 760px) {
+  /* Menu: il pannello scende, le voci entrano una dopo l'altra, l'icona ruota a ogni cambio.
+     shortcut: la chiusura resta immediata (il design system usa display: none); per animarla serve una modifica al Navbar. */
+  .ap-nav-open .ap-nav-panel { animation: wp-menu-in 320ms var(--wp-ease) backwards; transform-origin: top; }
+  .ap-nav-open .ap-nav-links li, .ap-nav-open .ap-nav-actions { animation: wp-menu-item 380ms var(--wp-ease) backwards; }
+  .ap-nav-open .ap-nav-links li:nth-child(1) { animation-delay: 40ms; }
+  .ap-nav-open .ap-nav-links li:nth-child(2) { animation-delay: 80ms; }
+  .ap-nav-open .ap-nav-links li:nth-child(3) { animation-delay: 120ms; }
+  .ap-nav-open .ap-nav-links li:nth-child(4) { animation-delay: 160ms; }
+  .ap-nav-open .ap-nav-actions { animation-delay: 200ms; }
+  .ap-nav-toggle svg { animation: wp-menu-icon 280ms var(--wp-ease) backwards; }
+  @keyframes wp-menu-in { from { opacity: 0; transform: scaleY(0.9) translateY(calc(-1 * var(--space-2))); } }
+  @keyframes wp-menu-item { from { opacity: 0; transform: translateX(calc(-1 * var(--space-4))); } }
+  @keyframes wp-menu-icon { from { opacity: 0; transform: rotate(-90deg) scale(0.6); } }
+}
+
+/* Telefono e ogni schermo touch (tablet compresi): niente ritardo tra fratelli, l'ingresso è breve e immediato. */
+@media screen and (prefers-reduced-motion: no-preference) and (max-width: 760px), screen and (prefers-reduced-motion: no-preference) and (hover: none) {
+  .wp-reveal.wp-in, .wp-chain > .wp-reveal.wp-in { animation-duration: 450ms; animation-delay: 0s; }
+  .wp-motion .wp-chain > li > .wp-chain-step::after { transition-delay: 0s; }
+}

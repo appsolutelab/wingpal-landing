@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import "./hero.css";
+import { useEffect, useState, type PointerEvent } from "react";
 import { Bell, CalendarDays, Code, EyeOff, FileText, ListTodo, UserX, WifiOff } from "lucide-react";
 import {
   Button, FeatureCard, Footer, Hero, LangSwitch, Navbar, RepoCard, Section, ThemeToggle,
@@ -7,6 +8,8 @@ import {
 import { EventBlock, Tag, TaskItem } from "./ui/wingpal";
 import { it, type Texts } from "./i18n/it";
 import { en } from "./i18n/en";
+import heroLight from "./assets/hero-light.webp";
+import heroDark from "./assets/hero-dark.webp";
 
 type Lang = "it" | "en";
 
@@ -25,17 +28,36 @@ function Logo() {
 
 function HeroPreview({ t }: { t: Texts["preview"] }) {
   const labels = { markDone: t.markDone, markTodo: t.markTodo, late: t.late };
+  // Parallasse: solo mouse; il CSS la applica solo con pointer fine e senza prefers-reduced-motion.
+  const parallax = (e: PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType !== "mouse") return;
+    const r = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty("--wp-hero-px", ((e.clientX - r.left) / r.width - 0.5).toFixed(3));
+    e.currentTarget.style.setProperty("--wp-hero-py", ((e.clientY - r.top) / r.height - 0.5).toFixed(3));
+  };
+  const rest = (e: PointerEvent<HTMLDivElement>) => {
+    e.currentTarget.style.removeProperty("--wp-hero-px");
+    e.currentTarget.style.removeProperty("--wp-hero-py");
+  };
   return (
-    <section className="wp-preview" aria-label={t.label}>
-      <div className="wp-preview-head">
-        <span className="wp-preview-title">{t.today}</span>
-        <Tag tone="reminder">{t.reminder}</Tag>
+    <div className="wp-hero-stage" onPointerMove={parallax} onPointerLeave={rest}>
+      <div className="wp-hero-art">
+        {/* React 18.3 non conosce fetchPriority: l'attributo va scritto minuscolo. */}
+        <img className="wp-hero-img wp-hero-img-light" src={heroLight} alt="" width={1472} height={1104} {...{ fetchpriority: "high" }} decoding="async" />
+        <img className="wp-hero-img wp-hero-img-dark" src={heroDark} alt="" width={1472} height={1104} decoding="async" />
       </div>
-      <EventBlock title={t.event1} time="14:30–16:00" place={t.event1Place} color="sky" />
-      <EventBlock title={t.event2} time="17:00–18:30" color="coral" />
-      <TaskItem title={t.task1} due={t.task1Due} tag={t.tagSchool} tagColor="sky" labels={labels} />
-      <TaskItem title={t.task2} due={t.task2Due} labels={labels} />
-    </section>
+      <span className="wp-hero-chip" aria-hidden="true"><Tag color="sky">{t.tagSchool}</Tag></span>
+      <section className="wp-preview wp-hero-card" aria-label={t.label}>
+        <div className="wp-preview-head">
+          <span className="wp-preview-title">{t.today}</span>
+          <Tag tone="reminder">{t.reminder}</Tag>
+        </div>
+        <EventBlock title={t.event1} time="14:30–16:00" place={t.event1Place} color="sky" />
+        <EventBlock title={t.event2} time="17:00–18:30" color="coral" />
+        <TaskItem title={t.task1} due={t.task1Due} tag={t.tagSchool} tagColor="sky" labels={labels} />
+        <TaskItem title={t.task2} due={t.task2Due} labels={labels} />
+      </section>
+    </div>
   );
 }
 
