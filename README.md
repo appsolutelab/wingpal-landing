@@ -10,15 +10,15 @@ App gratuita e open source (AGPL-3.0) che mette calendario, note e attività in 
 
 ## Decisioni
 
-| Tema | Decisione |
-|---|---|
-| Pagine | Una sola pagina con sezioni e ancore (`#funzioni`, `#principi`, `#roadmap`, `#chi-siamo`). |
-| Stack | React + Vite + TypeScript. I componenti della pagina (Navbar, Footer, Section, FeatureCard) sono pensati per essere riusati dalla futura landing aziendale. |
-| CSS | File `.css` normali, solo con le variabili del design system. Niente Tailwind, niente librerie di animazione, niente router. |
-| Lingue | Italiano e inglese. Due pagine (`/` e `/en/`) montano lo stesso componente. I testi stanno in `src/i18n/it.ts` e `src/i18n/en.ts`, con le stesse chiavi. Non usiamo i18next. |
-| Tema | Chiaro e scuro. La pagina segue il sistema operativo, e un pulsante nell'header permette di forzare il tema. La scelta resta salvata nel browser (`localStorage`, con try/catch). |
-| Azione principale | Un solo bottone primario: "Vedi il codice su GitHub". Il secondario "Scopri le funzioni" scorre fino a `#funzioni`. |
-| Pubblicazione | GitHub Pages, con `base` di Vite impostato a `/wingpal-landing/`. |
+| Tema              | Decisione                                                                                                                                                                         |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Pagine            | Una sola pagina con sezioni e ancore (`#funzioni`, `#principi`, `#roadmap`, `#chi-siamo`).                                                                                        |
+| Stack             | React + Vite + TypeScript. I componenti della pagina (Navbar, Footer, Section, FeatureCard) sono pensati per essere riusati dalla futura landing aziendale.                       |
+| CSS               | File `.css` normali, solo con le variabili del design system. Niente Tailwind, niente librerie di animazione, niente router.                                                      |
+| Lingue            | Italiano e inglese. Due pagine (`/` e `/en/`) montano lo stesso componente. I testi stanno in `src/i18n/it.ts` e `src/i18n/en.ts`, con le stesse chiavi. Non usiamo i18next.      |
+| Tema              | Chiaro e scuro. La pagina segue il sistema operativo, e un pulsante nell'header permette di forzare il tema. La scelta resta salvata nel browser (`localStorage`, con try/catch). |
+| Azione principale | Un solo bottone primario: "Vedi il codice su GitHub". Il secondario "Scopri le funzioni" scorre fino a `#funzioni`.                                                               |
+| Pubblicazione     | GitHub Pages, con `base` di Vite impostato a `/wingpal-landing/`.                                                                                                                 |
 
 ## Sezioni, in ordine
 
@@ -87,4 +87,4 @@ npm run build     # build in dist/
 - [x] Anteprima interattiva nell'hero
 - [ ] Repository dell'app: per ora `REPO_NAME` in `src/App.tsx` punta a questa landing
 - [ ] Prova di entrambi i temi, su mobile e con `prefers-reduced-motion`
-- [x] Pubblicazione su GitHub Pages: https://appsolutelab.github.io/wingpal-landing/ (workflow in `.github/workflows/pages.yml`, parte a ogni push su `main`)
+- [x] Pubblicazione su GitHub Pages: https://wingpal.appsolute-lab.it/wingpal-landing/ (workflow in `.github/workflows/pages.yml`, parte a ogni push su `main`)
