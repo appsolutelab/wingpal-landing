@@ -1,0 +1,12 @@
+/* NoteCard: card in rilievo; il bottone del titolo copre tutta la card (::after), i collegamenti stanno sopra. */
+.ap-note { position: relative; display: flex; flex-direction: column; gap: var(--space-1); min-width: 0; padding: var(--space-4); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-raised); color: var(--ink); transition: box-shadow .2s ease-out, background-color .2s ease-out; }
+.ap-note:has(.ap-note-open:active) { box-shadow: var(--shadow-inset); }
+.ap-note-active { background: var(--accent-soft); box-shadow: var(--shadow-inset); }
+.ap-note-title { margin: 0; font: var(--text-body-strong); }
+.ap-note-open { display: block; width: 100%; padding: 0; border: 0; background: transparent; color: var(--ink); font: inherit; text-align: left; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ap-note-open::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius-lg); }
+.ap-note-open:focus-visible { outline: none; }
+.ap-note-open:focus-visible::after { outline: 2px solid var(--accent); outline-offset: 3px; }
+.ap-note-excerpt { margin: 0; font: var(--text-body); color: var(--ink-muted); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
+.ap-note-updated { margin: 0; font: var(--text-small); color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.ap-note-links { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-2); }

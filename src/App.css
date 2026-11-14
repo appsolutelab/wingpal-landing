@@ -4,7 +4,6 @@
 .wp-logo { display: block; background: var(--ink); mask: url("./ui/wingpal/assets/logo-w.svg") center / contain no-repeat; -webkit-mask: url("./ui/wingpal/assets/logo-w.svg") center / contain no-repeat; }
 
 /* Hero: riga di stato sotto il titolo, anteprima a fianco */
-.wp-hero-status { display: block; margin-bottom: var(--space-3); font: var(--text-small); color: var(--ink-muted); }
 .wp-preview { display: flex; flex-direction: column; gap: var(--space-4); max-width: 420px; margin-inline: auto; padding: var(--space-6); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-raised); }
 .wp-preview-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
 .wp-preview-title { font: var(--text-heading); color: var(--ink); }
@@ -13,16 +12,9 @@
 .wp-chain { display: grid; gap: var(--space-8); margin: 0; padding: 0; list-style: none; }
 .wp-chain > li { display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; }
 .wp-chain-step { font: var(--text-label); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); }
-.wp-note { display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-4); border-radius: var(--radius-lg); border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow-raised); font: var(--text-mono); color: var(--ink-muted); }
-.wp-note-title { color: var(--ink); font-weight: 600; }
 @media (min-width: 900px) {
   .wp-chain { grid-template-columns: repeat(3, 1fr); align-items: start; }
 }
-
-/* Roadmap: elenco ordinato di card, il numero sta nel pozzetto dell'icona */
-.wp-roadmap { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-6); margin: 0; padding: 0; list-style: none; }
-.wp-roadmap > li { display: grid; }
-.wp-roadmap-n { font: var(--text-label); font-variant-numeric: tabular-nums; }
 
 /* Chi siamo */
 .wp-about { display: grid; gap: var(--space-8); align-items: start; }
@@ -41,11 +33,3 @@
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
-
-/* Pagina privacy: testo in colonna stretta, leggibile */
-.wp-privacy { display: flex; flex-direction: column; gap: var(--space-6); max-width: 720px; }
-.wp-privacy h2 { margin: 0 0 var(--space-2); font: var(--text-heading); color: var(--ink); }
-.wp-privacy p { margin: 0; }
-/* Link nel testo: colore del testo + sottolineatura, così il contrasto regge in entrambi i temi */
-.wp-privacy p a { color: var(--ink); text-decoration: underline; }
-.wp-privacy-updated { font: var(--text-small); color: var(--ink-muted); }

@@ -1,0 +1,11 @@
+/* Callout: fascia scavata con l'icona del tono. Il tono cambia solo icona e colore dell'icona: il testo resta ink. */
+.ap-callout { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-lg); border: 1px solid var(--line); background: var(--surface-sunken); box-shadow: var(--shadow-inset); color: var(--ink); }
+.ap-callout-icon { flex: none; display: grid; place-items: center; height: 22px; color: var(--ink-muted); }
+.ap-callout-success .ap-callout-icon { color: var(--success); }
+.ap-callout-danger .ap-callout-icon { color: var(--danger); }
+.ap-callout-danger { border-color: var(--danger); }
+.ap-callout-body { flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.ap-callout-title { margin: 0; font: var(--text-body-strong); color: var(--ink); }
+.ap-callout-text { font: var(--text-body); color: var(--ink-muted); }
+.ap-callout-text > p { margin: 0; }
+.ap-callout-action { flex: none; display: flex; align-items: center; gap: var(--space-2); }

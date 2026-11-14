@@ -1,0 +1,6 @@
+/* Badge: pillola con il bordo sottile; non è un controllo, quindi niente rilievo. */
+.ap-badge { display: inline-flex; align-items: center; gap: var(--space-1); padding: 2px var(--space-2); border-radius: var(--radius-pill); border: 1px solid var(--line-strong); font: var(--text-small); font-weight: 600; color: var(--ink-muted); white-space: nowrap; vertical-align: middle; }
+.ap-badge-icon { display: inline-grid; flex: none; }
+.ap-badge-accent { border-color: var(--accent); background: var(--accent); color: var(--on-accent); }
+.ap-badge-success { border-color: var(--success); color: var(--success); }
+.ap-badge-danger { border-color: var(--danger); color: var(--danger); }

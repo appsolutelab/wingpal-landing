@@ -1,0 +1,12 @@
+/* Segmented: come Switch ma con più posizioni e il testo. Colonne tutte uguali, così il pomello scorre di una colonna alla volta. */
+.ap-seg { position: relative; flex: none; display: inline-grid; grid-auto-flow: column; grid-auto-columns: 1fr; height: 40px; padding: 3px; box-sizing: border-box; border-radius: var(--radius-pill); border: 1px solid var(--line-strong); background: var(--surface-sunken); box-shadow: var(--shadow-inset); max-width: 100%; }
+.ap-seg-knob { position: absolute; top: 3px; left: 3px; width: calc((100% - 6px) / var(--ap-seg-n, 2)); height: calc(100% - 6px); border-radius: var(--radius-pill); background: var(--accent); box-shadow: var(--shadow-raised-sm); transform: translateX(calc(var(--ap-seg-i, 0) * 100%)); transition: transform .3s cubic-bezier(.3, 1.3, .5, 1); pointer-events: none; }
+.ap-seg-opt { position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-width: 0; padding: 0 var(--space-4); border: 0; border-radius: var(--radius-pill); background: transparent; color: var(--ink-muted); font: 600 13px/18px var(--font-sans); white-space: nowrap; cursor: pointer; transition: color .2s; }
+.ap-seg-opt:hover { color: var(--ink); }
+.ap-seg-opt-on, .ap-seg-opt-on:hover { color: var(--on-accent); }
+.ap-seg-opt svg { flex: none; }
+.ap-seg-sm { height: 34px; }
+.ap-seg-sm .ap-seg-opt { padding: 0 var(--space-3); }
+/* L'anello di focus gira intorno a tutto il binario. */
+.ap-seg-opt:focus-visible { outline: none; }
+.ap-seg:has(.ap-seg-opt:focus-visible) { outline: 2px solid var(--accent); outline-offset: 3px; }

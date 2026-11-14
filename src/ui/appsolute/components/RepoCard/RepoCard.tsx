@@ -1,5 +1,6 @@
 import * as React from "react";
 import { CodeIcon, ArrowRightIcon } from "../../icons";
+import { Badge } from "../Badge/Badge";
 
 export interface RepoCardProps {
   /** Nome del repository come su GitHub: "appsolute/nome-progetto". */
@@ -27,7 +28,7 @@ export function RepoCard({ name, href, description, license, meta = [], linkLabe
       {description ? <span className="ap-repo-desc">{description}</span> : null}
       {items.length ? (
         <span className="ap-repo-meta">
-          {items.map((m) => <span key={m} className="ap-repo-chip">{m}</span>)}
+          {items.map((m, i) => <Badge key={i}>{m}</Badge>)}
         </span>
       ) : null}
       <span className="ap-repo-cta">{linkLabel}<ArrowRightIcon size={16} /></span>

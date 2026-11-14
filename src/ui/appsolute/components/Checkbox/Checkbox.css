@@ -1,0 +1,12 @@
+/* Checkbox: scavata con il bordo sottile; spuntata si riempie di accent. L'input vero resta sopra la casella, invisibile, così tastiera e screen reader funzionano da soli. */
+.ap-checkbox { position: relative; display: inline-flex; align-items: flex-start; gap: var(--space-3); min-height: 40px; padding: 9px 0; box-sizing: border-box; cursor: pointer; color: var(--ink); font: var(--text-body); }
+.ap-checkbox input { position: absolute; top: 9px; left: 0; width: 22px; height: 22px; margin: 0; opacity: 0; cursor: inherit; }
+.ap-checkbox-box { flex: none; display: grid; place-items: center; width: 22px; height: 22px; box-sizing: border-box; border-radius: var(--radius-sm); border: 1px solid var(--line-strong); background: var(--surface-sunken); box-shadow: var(--shadow-inset); color: var(--on-accent); transition: background-color .2s, border-color .2s, box-shadow .2s; }
+.ap-checkbox-box svg { stroke-width: 3; opacity: 0; transform: scale(.6); transition: opacity .15s, transform .2s cubic-bezier(.3, 1.6, .5, 1); }
+.ap-checkbox input:checked + .ap-checkbox-box { border-color: var(--accent); background: var(--accent); box-shadow: none; }
+.ap-checkbox input:checked + .ap-checkbox-box svg { opacity: 1; transform: scale(1); }
+.ap-checkbox input:focus-visible + .ap-checkbox-box { outline: 2px solid var(--accent); outline-offset: 3px; }
+.ap-checkbox-text { display: flex; flex-direction: column; min-width: 0; }
+.ap-checkbox-hint { font: var(--text-small); color: var(--ink-muted); }
+.ap-checkbox-disabled { cursor: not-allowed; color: var(--ink-muted); }
+.ap-checkbox-disabled .ap-checkbox-box { opacity: .6; box-shadow: none; }

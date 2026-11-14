@@ -34,11 +34,11 @@ export function Footer({ brand, logo, tagline, columns = [], bottom, navLabel = 
         </div>
         {columns.length ? (
           <nav className="ap-footer-cols" aria-label={navLabel}>
-            {columns.map((c) => (
-              <div key={c.title} className="ap-footer-col">
+            {columns.map((c, i) => (
+              <div key={i} className="ap-footer-col">
                 <p className="ap-footer-col-title">{c.title}</p>
                 <ul>
-                  {c.links.map((l) => <li key={l.href}><a href={l.href}>{l.label}</a></li>)}
+                  {c.links.map((l, j) => <li key={j}><a href={l.href}>{l.label}</a></li>)}
                 </ul>
               </div>
             ))}

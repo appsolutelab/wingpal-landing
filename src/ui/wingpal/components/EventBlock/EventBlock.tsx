@@ -18,7 +18,7 @@ export function EventBlock({ title, time, place, color, compact, height }: Event
   return (
     <div className={cx("ap-event", compact && "ap-event-compact")} style={style}>
       <span className="ap-event-title">{title}</span>
-      {time ? <span className="ap-event-time">{time + (place ? " · " + place : "")}</span> : null}
+      {time || place ? <span className="ap-event-time">{[time, place].filter(Boolean).join(" · ")}</span> : null}
     </div>
   );
 }

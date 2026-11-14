@@ -20,8 +20,11 @@ export function Button({ variant = "secondary", size = "md", href, target, rel, 
     onClick?.(e as React.MouseEvent<HTMLButtonElement>);
   };
   if (href != null) {
+    // Un link non si può disabilitare: senza href non è più raggiungibile e aria-disabled lo dice agli screen reader.
+    const { disabled, ...anchorRest } = rest;
+    if (disabled) return <a {...(anchorRest as React.AnchorHTMLAttributes<HTMLAnchorElement>)} role="link" aria-disabled="true" className={cls}>{children}</a>;
     return (
-      <a {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)} href={href} target={target} rel={rel ?? (target === "_blank" ? "noopener noreferrer" : undefined)} className={cls} onClick={handle}>
+      <a {...(anchorRest as React.AnchorHTMLAttributes<HTMLAnchorElement>)} href={href} target={target} rel={rel ?? (target === "_blank" ? "noopener noreferrer" : undefined)} className={cls} onClick={handle}>
         {children}
       </a>
     );

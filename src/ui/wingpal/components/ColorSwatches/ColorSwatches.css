@@ -1,0 +1,6 @@
+/* ColorSwatches: cinque pallini pieni. Quello scelto ha la spunta e un anello: lo stato non dipende solo dal colore. */
+.ap-swatches { display: inline-flex; flex-wrap: wrap; gap: var(--space-2); }
+.ap-swatch { display: grid; place-items: center; width: 34px; height: 34px; padding: 0; border: 3px solid var(--surface); border-radius: var(--radius-pill); background: var(--cal); box-shadow: var(--shadow-raised-sm); color: var(--on-accent); cursor: pointer; box-sizing: border-box; transition: box-shadow .15s; }
+.ap-swatch svg { stroke-width: 3; }
+.ap-swatch[aria-checked="true"] { box-shadow: 0 0 0 2px var(--accent); }
+.ap-swatch:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }

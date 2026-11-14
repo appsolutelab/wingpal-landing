@@ -3,4 +3,5 @@
   .ap-task, .ap-check, .ap-task-title, .ap-task-title-text, .ap-poll-opt, .ap-poll-bar { transition: none; animation: none !important; }
   .ap-check svg path { animation: none !important; }
   .ap-poll-opt:active { transform: none; }
+  .ap-side-item, .ap-linkchip, .ap-note, .ap-month-num, .ap-swatch, .ap-quickadd input, .ap-quickadd-submit { transition: none; }
 }

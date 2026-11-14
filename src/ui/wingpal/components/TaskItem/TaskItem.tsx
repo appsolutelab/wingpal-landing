@@ -12,6 +12,10 @@ export interface TaskItemProps {
   tag?: string;
   tagColor?: CalendarColor;
   onToggle?: (done: boolean) => void;
+  /** Con onOpen il titolo diventa un bottone che apre l'attività (scadenza, etichetta, collegamenti). */
+  onOpen?: () => void;
+  /** I collegamenti dell'attività, come LinkChip: la nota o l'evento da cui è nata. */
+  links?: React.ReactNode;
   /** Testi per l'accessibilità e il ritardo, da tradurre per l'inglese. */
   labels?: { markDone?: string; markTodo?: string; late?: string };
 }
@@ -24,10 +28,12 @@ function Check() {
   );
 }
 
-export function TaskItem({ title, due, late, done: initialDone = false, tag, tagColor, onToggle, labels = {} }: TaskItemProps) {
+export function TaskItem({ title, due, late, done: initialDone = false, tag, tagColor, onToggle, onOpen, links, labels = {} }: TaskItemProps) {
   const { markDone = "Segna come fatta", markTodo = "Segna come da fare", late: lateLabel = "In ritardo" } = labels;
   const [done, setDone] = React.useState(initialDone);
   const [justDone, setJustDone] = React.useState(false);
+  // Se done cambia da fuori (dati ricaricati, un'altra vista), la riga si allinea senza animazione.
+  React.useEffect(() => { setDone(initialDone); }, [initialDone]);
   const toggle = () => {
     const v = !done;
     setDone(v);
@@ -41,13 +47,20 @@ export function TaskItem({ title, due, late, done: initialDone = false, tag, tag
         {done ? <Check /> : null}
       </button>
       <div className="ap-task-body">
-        <span className="ap-task-title"><span className="ap-task-title-text">{title}</span></span>
+        <span className="ap-task-title">
+          {onOpen ? (
+            <button type="button" className="ap-task-open" onClick={onOpen}><span className="ap-task-title-text">{title}</span></button>
+          ) : (
+            <span className="ap-task-title-text">{title}</span>
+          )}
+        </span>
         {due || tag ? (
           <span className="ap-task-meta">
             {due ? <span className={isLate ? "ap-task-late" : undefined}>{isLate ? lateLabel + " · " + due : due}</span> : null}
             {tag ? <Tag color={tagColor}>{tag}</Tag> : null}
           </span>
         ) : null}
+        {links ? <div className="ap-task-links">{links}</div> : null}
       </div>
     </div>
   );

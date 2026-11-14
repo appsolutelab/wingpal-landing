@@ -15,6 +15,9 @@
 .ap-footer-bottom { max-width: 1120px; margin: var(--space-8) auto 0; padding-top: var(--space-4); border-top: 1px solid var(--line); font: var(--text-small); color: var(--ink-muted); }
 .ap-footer-bottom a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 
+/* Su schermi touch i link hanno un'area alta 40px. */
+@media (pointer: coarse) { .ap-footer-col a { min-height: 40px; } }
+
 @media (min-width: 760px) {
   .ap-footer { padding-inline: var(--space-8); }
 }

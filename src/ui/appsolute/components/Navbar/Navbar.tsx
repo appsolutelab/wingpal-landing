@@ -18,22 +18,31 @@ export interface NavbarProps {
   actions?: React.ReactNode;
   /** Resta in alto durante lo scorrimento (default true). */
   sticky?: boolean;
+  /** Ancora del contenuto principale, es. "#contenuto": aggiunge il link "Vai al contenuto", che compare solo con il tasto Tab. */
+  skipHref?: string;
   /** Testi per gli screen reader, da tradurre per l'inglese. */
-  labels?: { nav?: string; open?: string; close?: string };
+  labels?: { nav?: string; open?: string; close?: string; skip?: string };
 }
 
-export function Navbar({ brand, logo, homeHref = "/", links = [], current, actions, sticky = true, labels = {} }: NavbarProps) {
-  const { nav = "Menu principale", open: openLabel = "Apri il menu", close = "Chiudi il menu" } = labels;
+export function Navbar({ brand, logo, homeHref = "/", links = [], current, actions, sticky = true, skipHref, labels = {} }: NavbarProps) {
+  const { nav = "Menu principale", open: openLabel = "Apri il menu", close = "Chiudi il menu", skip = "Vai al contenuto" } = labels;
+  const ref = React.useRef<HTMLElement>(null);
   const [open, setOpen] = React.useState(false);
   const panelId = React.useId();
   React.useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+    // Esc chiude il pannello e riporta il focus sul bottone menu: altrimenti resterebbe su una voce ormai nascosta.
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      ref.current?.querySelector<HTMLElement>(".ap-nav-toggle")?.focus();
+    };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
   return (
-    <header className={cx("ap-nav", sticky && "ap-nav-sticky", open && "ap-nav-open")}>
+    <header ref={ref} className={cx("ap-nav", sticky && "ap-nav-sticky", open && "ap-nav-open")}>
+      {skipHref ? <a className="ap-skip" href={skipHref}>{skip}</a> : null}
       <div className="ap-nav-bar">
         <a className="ap-nav-brand" href={homeHref}>
           {logo ? <span className="ap-nav-logo" aria-hidden="true">{logo}</span> : null}
@@ -52,8 +61,8 @@ export function Navbar({ brand, logo, homeHref = "/", links = [], current, actio
           {links.length ? (
             <nav className="ap-nav-links" aria-label={nav}>
               <ul>
-                {links.map((l) => (
-                  <li key={l.href}>
+                {links.map((l, i) => (
+                  <li key={i}>
                     <a className={cx("ap-nav-link", l.href === current && "ap-nav-link-on")} href={l.href} aria-current={l.href === current ? "page" : undefined} onClick={() => setOpen(false)}>
                       {l.label}
                     </a>

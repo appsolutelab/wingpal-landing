@@ -3,7 +3,7 @@ const TARGETS = [
   "main > .ap-section .ap-section-head",
   "main > .ap-section .ap-section-grid > *",
   ".wp-chain > li",
-  ".wp-roadmap > li",
+  ".ap-steps > li",
   ".wp-about > *",
 ].join(",");
 

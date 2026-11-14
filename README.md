@@ -53,7 +53,7 @@ Le regole complete sono nei README di `src/ui/appsolute/` e `src/ui/wingpal/`. L
 
 ## Design system nel progetto
 
-Il design system sono due cartelle di componenti React copiate da `Assets/` in `src/ui/`: `appsolute/` (token, bottoni, Navbar, Hero, Section, FeatureCard, Footer, tema) e `wingpal/` (Tag, TaskItem, EventBlock, PollCard, token di WingPal). Ognuna ha il suo README. Non si modificano qui: si modifica il design system e si ricopia la cartella.
+Il design system sono due cartelle di componenti React copiate da `Assets/` in `src/ui/`: `appsolute/` (token, controlli, tema e i blocchi della landing: Navbar, Hero, Section, FeatureCard, Steps, Callout, Prose, RepoCard, Footer…) e `wingpal/` (token di WingPal e i componenti dell'app: Tag, TaskItem, EventBlock, NoteCard, LinkChip…). Ognuna ha il suo README e le schede in `api/`. Ultima copia: 14 novembre 2026, da https://claude.ai/artifact/Wwoj3Re3YXVT3ZFJyAqUAe (Appsolute) e https://claude.ai/artifact/8WEus46ryqjutF2ga2CmCH (WingPal). Non si modificano qui: si modifica il design system e si ricopia la cartella.
 
 Gli stili si importano una volta sola in `src/main.tsx`, prima quelli di appsolute e poi quelli di WingPal. Il tema scuro si attiva con `data-theme="dark"` su `<html>`; la chiave nel browser è `wingpal-theme`.
 

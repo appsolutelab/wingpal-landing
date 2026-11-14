@@ -1,0 +1,8 @@
+/* ViewHeader: una riga; su finestre strette i controlli vanno a capo sotto il titolo. */
+.ap-viewhead { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-6); min-width: 0; }
+.ap-viewhead-title { display: flex; flex-direction: column; min-width: 0; }
+.ap-viewhead-title h1 { margin: 0; font: var(--text-title); letter-spacing: -0.01em; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ap-viewhead-title h1::first-letter { text-transform: uppercase; }
+.ap-viewhead-title p { margin: 0; font: var(--text-small); color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.ap-viewhead-nav { display: flex; align-items: center; gap: var(--space-3); }
+.ap-viewhead-end { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); margin-left: auto; }

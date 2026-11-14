@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ArrowRightIcon } from "../../icons";
+import { Badge } from "../Badge/Badge";
 
 export interface FeatureCardProps {
   /** Un'icona da 20px che usa currentColor (es. da lucide-react). */
@@ -8,7 +9,7 @@ export interface FeatureCardProps {
   title: string;
   /** Una o due frasi su cosa fa per la persona. */
   children: React.ReactNode;
-  /** Pillola accanto al titolo per ciò che non c'è ancora: "In arrivo", "Dopo l'MVP". */
+  /** Badge accanto al titolo per ciò che non c'è ancora: "In arrivo", "Dopo l'MVP". */
   status?: string;
   /** Link per approfondire. */
   href?: string;
@@ -25,7 +26,7 @@ export function FeatureCard({ icon, title, children, status, href, linkLabel = "
       {icon ? <span className="ap-feature-icon" aria-hidden="true">{icon}</span> : null}
       <H className="ap-feature-title">
         {title}
-        {status ? <span className="ap-feature-status">{status}</span> : null}
+        {status ? <Badge>{status}</Badge> : null}
       </H>
       <div className="ap-feature-text">{children}</div>
       {href ? (

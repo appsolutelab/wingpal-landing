@@ -1,0 +1,16 @@
+/* Steps: il numero sta in un pozzetto scavato; la tappa in corso ha il numero pieno di accent, quella fatta una spunta. */
+.ap-steps { display: grid; gap: var(--space-6); margin: 0; padding: 0; list-style: none; counter-reset: none; }
+.ap-step { position: relative; display: flex; align-items: flex-start; gap: var(--space-4); min-width: 0; }
+.ap-step-n { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: var(--radius-md); border: 1px solid transparent; box-sizing: border-box; background: var(--surface-sunken); box-shadow: var(--shadow-inset); color: var(--ink); font: var(--text-label); font-size: 13px; font-variant-numeric: tabular-nums; }
+.ap-step-current .ap-step-n { background: var(--accent); box-shadow: var(--shadow-glow); color: var(--on-accent); }
+.ap-step-done .ap-step-n { border-color: var(--line-strong); }
+.ap-step-body { display: flex; flex-direction: column; gap: var(--space-1); min-width: 0; padding-top: 9px; }
+.ap-step-title { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin: 0; font: var(--text-heading); color: var(--ink); }
+.ap-step-text { font: var(--text-body); color: var(--ink-muted); max-width: 60ch; }
+.ap-step-text > p { margin: 0; }
+/* list: una linea sottile unisce i pozzetti */
+.ap-steps-list .ap-step:not(:last-child)::before { content: ""; position: absolute; left: 21px; top: 52px; bottom: calc(var(--space-6) * -1 + 8px); width: 2px; border-radius: var(--radius-pill); background: var(--line); }
+/* grid: ogni tappa è una card in rilievo */
+.ap-steps-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.ap-steps-grid .ap-step { flex-direction: column; gap: var(--space-3); padding: var(--space-6); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-raised); }
+.ap-steps-grid .ap-step-body { padding-top: 0; }

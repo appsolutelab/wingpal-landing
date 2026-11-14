@@ -1,0 +1,13 @@
+/* Contrasto elevato di Windows (forced-colors): il sistema toglie ombre, gradienti e sfondi, cioè tutto ciò che
+   nel neumorfismo fa capire dove finisce una forma. Qui ogni forma in rilievo o scavata riceve un contorno,
+   e ciò che era pieno di accent usa i colori di selezione del sistema. Il focus resta l'anello da 2px. */
+@media (forced-colors: active) {
+  .ap-btn:not(.ap-btn-ghost), .ap-nav-bar, .ap-feature, .ap-feature-icon, .ap-repo, .ap-repo-icon, .ap-code-pre, .ap-card, .ap-callout,
+  .ap-empty-icon, .ap-dialog, .ap-kbd, .ap-download, .ap-download-list, .ap-steps-grid .ap-step, .ap-step-n, .ap-project, .ap-project-logo,
+  .ap-team:not(.ap-team-compact), .ap-faq-item, .ap-window { outline: 1px solid CanvasText; outline-offset: -1px; }
+  .ap-btn-primary, .ap-badge-accent, .ap-switch-knob, .ap-seg-knob, .ap-step-current .ap-step-n, .ap-skip,
+  .ap-checkbox input:checked + .ap-checkbox-box { forced-color-adjust: none; background: Highlight; color: HighlightText; border-color: Highlight; }
+  .ap-switch-opt-on, .ap-seg-opt-on, .ap-switch-opt-on:hover, .ap-seg-opt-on:hover { forced-color-adjust: none; color: HighlightText; }
+  .ap-nav-link-on { outline: 1px solid Highlight; outline-offset: -1px; }
+  .ap-btn:disabled, .ap-btn[aria-disabled="true"] { color: GrayText; outline-color: GrayText; opacity: 1; }
+}

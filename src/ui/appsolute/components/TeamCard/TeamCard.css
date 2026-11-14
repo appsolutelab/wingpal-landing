@@ -1,0 +1,10 @@
+/* TeamCard: card in rilievo con l'avatar scavato. */
+.ap-team { display: flex; align-items: center; gap: var(--space-4); min-width: 0; padding: var(--space-4); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-raised); color: var(--ink); }
+.ap-team-avatar { flex: none; display: grid; place-items: center; width: 56px; height: 56px; border-radius: var(--radius-pill); border: 1px solid var(--line-strong); box-sizing: border-box; background: var(--surface-sunken); box-shadow: var(--shadow-inset); color: var(--ink); font: var(--text-body-strong); letter-spacing: 0.04em; overflow: hidden; }
+.ap-team-avatar > img { width: 100%; height: 100%; object-fit: cover; }
+.ap-team-body { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+.ap-team-name { font: var(--text-body-strong); color: var(--ink); }
+.ap-team-role { font: var(--text-small); color: var(--ink-muted); }
+.ap-team-link { margin-top: var(--space-1); font-size: 13px; line-height: 18px; }
+.ap-team-compact { padding: 0; background: transparent; box-shadow: none; gap: var(--space-3); }
+.ap-team-compact .ap-team-avatar { width: 40px; height: 40px; font-size: 13px; }

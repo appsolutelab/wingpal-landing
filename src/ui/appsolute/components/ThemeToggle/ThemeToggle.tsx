@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Switch } from "../Switch/Switch";
 import { SunIcon, MoonIcon } from "../../icons";
-import { Theme, getInitialTheme, applyTheme } from "../../theme";
+import { Theme, getInitialTheme, applyTheme, followSystemTheme } from "../../theme";
 
 export interface ThemeToggleProps {
   /** Tema attivo. Senza theme il componente legge il tema salvato o quello del sistema e cambia da solo <html data-theme>. */
@@ -18,7 +18,13 @@ export function ThemeToggle({ theme, onChange, storageKey, labels = {} }: ThemeT
   const { label = "Tema", light = "Tema chiaro", dark = "Tema scuro" } = labels;
   const [inner, setInner] = React.useState<Theme>(() => theme ?? getInitialTheme(storageKey));
   const current = theme ?? inner;
-  React.useEffect(() => { if (theme == null) applyTheme(inner, storageKey); }, [theme, inner, storageKey]);
+  // Al primo render il tema si applica senza salvarlo: si salva solo quando lo sceglie la persona (vedi onChange).
+  // Così, finché nessuno sceglie, la pagina continua a seguire il sistema operativo.
+  React.useEffect(() => { if (theme == null) applyTheme(getInitialTheme(storageKey), storageKey, false); }, [theme, storageKey]);
+  React.useEffect(() => {
+    if (theme != null) return;
+    return followSystemTheme((t) => { setInner(t); applyTheme(t, storageKey, false); }, storageKey);
+  }, [theme, storageKey]);
   // Se il tema cambia da un'altra parte (un secondo ThemeToggle, useTheme), il pomello si allinea.
   React.useEffect(() => {
     if (theme != null || typeof MutationObserver === "undefined") return;
@@ -38,7 +44,11 @@ export function ThemeToggle({ theme, onChange, storageKey, labels = {} }: ThemeT
         { value: "light", name: light, content: <SunIcon size={18} /> },
         { value: "dark", name: dark, content: <MoonIcon size={18} /> },
       ]}
-      onChange={(v) => { setInner(v as Theme); onChange?.(v as Theme); }}
+      onChange={(v) => {
+        setInner(v as Theme);
+        if (theme == null) applyTheme(v as Theme, storageKey, true);
+        onChange?.(v as Theme);
+      }}
     />
   );
 }

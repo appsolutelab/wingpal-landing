@@ -33,3 +33,18 @@ export const CodeIcon = (p: { size?: number }) => (
 export const ArrowRightIcon = (p: { size?: number }) => (
   <Icon {...p}><path d="M5 12h14M12 5l7 7-7 7" /></Icon>
 );
+export const DownloadIcon = (p: { size?: number }) => (
+  <Icon {...p}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /></Icon>
+);
+export const ChevronDownIcon = (p: { size?: number }) => (
+  <Icon {...p}><path d="m6 9 6 6 6-6" /></Icon>
+);
+export const InfoIcon = (p: { size?: number }) => (
+  <Icon {...p}><circle cx="12" cy="12" r="10" /><path d="M12 16v-4M12 8h.01" /></Icon>
+);
+export const AlertIcon = (p: { size?: number }) => (
+  <Icon {...p}><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3M12 9v4M12 17h.01" /></Icon>
+);
+export const CircleCheckIcon = (p: { size?: number }) => (
+  <Icon {...p}><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></Icon>
+);

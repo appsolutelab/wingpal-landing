@@ -1,4 +1,4 @@
-/* WingPal — generato da tokens.json del design system WingPal (token di Appsolute + colori di prodotto) */
+/* WingPal — generated from tokens.json */
 :root, [data-theme="light"] {
   --bg: #e6e6e6; /* Sfondo dell'app. Nel neumorfismo è anche il colore di bottoni, card e pannelli: le forme escono dallo sfondo con le ombre, non con un colore diverso. */
   --surface: var(--bg); /* Bottoni, card, pannelli ed editor: stesso colore dello sfondo, separati solo da shadow-raised. */
@@ -28,7 +28,6 @@
   --shadow-button-hover: 10px 10px 20px rgba(150, 150, 150, 0.6), -10px -10px 20px rgba(255, 255, 255, 0.95); /* Bottone sotto il puntatore: l'ombra si allunga e il bottone sale di 1px. Come shadow-button, va sotto il bottone. */
   --shadow-button-edge: inset 1px 1px 0 rgba(255, 255, 255, 0.8); /* Filo di luce sul bordo in alto a sinistra dei bottoni, sul bottone stesso. shadow-button e shadow-button-hover vanno sotto il bottone (::before), non sul bottone. */
   --shadow-inset: inset 3px 3px 6px rgba(150, 150, 150, 0.55), inset -3px -3px 6px rgba(255, 255, 255, 0.85); /* Cose scavate: campi di input, checkbox vuote, bottone premuto, attività completata, opzione votata. */
-  --shadow-inset-accent: inset 3px 3px 6px rgba(0, 0, 0, 0.6); /* Bottone primario premuto: scavato sul riempimento accent. */
   --shadow-glow: 0 6px 16px rgba(24, 24, 24, 0.32); /* Alone sotto il bottone primario e la checkbox spuntata. Una o due volte per schermata. */
   --shadow-pop: 12px 12px 28px rgba(150, 150, 150, 0.6), -8px -8px 24px rgba(255, 255, 255, 0.8); /* Solo per ciò che galleggia sopra la vista: menu, popover, dialoghi, evento trascinato. */
 }
@@ -61,7 +60,6 @@
   --shadow-button-hover: 10px 10px 20px rgba(0, 0, 0, 0.65), -10px -10px 20px rgba(255, 255, 255, 0.06);
   --shadow-button-edge: inset 1px 1px 0 rgba(255, 255, 255, 0.08);
   --shadow-inset: inset 3px 3px 6px rgba(0, 0, 0, 0.6), inset -3px -3px 6px rgba(255, 255, 255, 0.045);
-  --shadow-inset-accent: inset 3px 3px 6px rgba(0, 0, 0, 0.3), inset -3px -3px 6px rgba(255, 255, 255, 0.7);
   --shadow-glow: 0 6px 18px rgba(230, 230, 230, 0.16);
   --shadow-pop: 12px 12px 28px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(236, 236, 236, 0.06);
 }

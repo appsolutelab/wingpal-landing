@@ -1,0 +1,16 @@
+/* Dialog: galleggia su surface-raised con shadow-pop; dietro, il velo scrim. Il <dialog> non ha padding: così un clic sul velo colpisce lui e non il pannello. */
+.ap-dialog { width: calc(100% - 2 * var(--space-4)); max-height: calc(100% - 2 * var(--space-4)); padding: 0; border: 0; border-radius: var(--radius-lg); background: var(--surface-raised); box-shadow: var(--shadow-pop); color: var(--ink); overflow: auto; }
+.ap-dialog-sm { max-width: 400px; }
+.ap-dialog-md { max-width: 520px; }
+.ap-dialog::backdrop { background: var(--scrim, rgba(0, 0, 0, 0.45)); }
+.ap-dialog-inline { position: relative; margin: 0 auto; }
+.ap-dialog-panel { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-6); }
+.ap-dialog-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); }
+.ap-dialog-title { margin: 0; padding-top: var(--space-1); font: var(--text-heading); color: var(--ink); }
+.ap-dialog-body { display: flex; flex-direction: column; gap: var(--space-4); font: var(--text-body); color: var(--ink-muted); }
+.ap-dialog-body > p { margin: 0; }
+.ap-dialog-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-3); margin-top: var(--space-2); }
+@media (prefers-reduced-motion: no-preference) {
+  .ap-dialog[open] { animation: ap-dialog-in .18s ease-out; }
+  @keyframes ap-dialog-in { from { opacity: 0; transform: translateY(var(--space-2)); } }
+}

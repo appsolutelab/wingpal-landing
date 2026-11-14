@@ -1,0 +1,12 @@
+/* Reminder: galleggia sopra la vista (surface-raised + shadow-pop). Il marigold è solo nel pozzetto della campanella: è il colore del tempo. */
+.ap-reminder { display: flex; align-items: flex-start; gap: var(--space-3); width: 100%; max-width: 360px; padding: var(--space-4); box-sizing: border-box; border-radius: var(--radius-lg); background: var(--surface-raised); box-shadow: var(--shadow-pop); color: var(--ink); }
+.ap-reminder-icon { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: var(--radius-md); background: var(--marigold); color: var(--on-marigold); }
+.ap-reminder-body { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.ap-reminder-kind { font: var(--text-label); letter-spacing: 0.06em; text-transform: uppercase; color: var(--marigold-strong); }
+.ap-reminder-title { font: var(--text-body-strong); color: var(--ink); overflow-wrap: anywhere; }
+.ap-reminder-time { font: var(--text-small); color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.ap-reminder-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-3); }
+@media (prefers-reduced-motion: no-preference) {
+  .ap-reminder { animation: ap-reminder-in .25s ease-out; }
+  @keyframes ap-reminder-in { from { opacity: 0; transform: translateY(var(--space-2)); } }
+}

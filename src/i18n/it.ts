@@ -10,6 +10,7 @@ export const it = {
     main: "Menu principale",
     open: "Apri il menu",
     close: "Chiudi il menu",
+    skip: "Vai al contenuto",
     language: "Lingua",
     theme: "Tema",
     light: "Tema chiaro",
@@ -68,6 +69,12 @@ export const it = {
     noteTitle: "Riunione di progetto",
     noteLines: ["Deciso il calendario delle consegne", "Serve una demo per venerdì"],
     taskDue: "Venerdì · 09:00",
+    chip: { event: "Evento", note: "Nota", task: "Attività" },
+  },
+  download: {
+    title: "In sviluppo",
+    text: "La prima versione è prevista a gennaio 2027. Finché non esce non c'è niente da scaricare: intanto puoi leggere il codice.",
+    action: "Vedi il codice",
   },
   principles: {
     eyebrow: "Principi",

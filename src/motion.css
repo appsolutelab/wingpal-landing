@@ -32,8 +32,8 @@
 @media screen and (prefers-reduced-motion: no-preference) and (hover: hover) {
   /* 2. Card: si sollevano sotto il puntatore o quando il focus è al loro interno; l'icona si muove
      con loro, così lo stato non dipende solo dall'ombra. Il focus ring del design system non cambia. */
-  main > .ap-section .ap-feature, .wp-note { transition: transform 400ms var(--wp-ease), box-shadow 400ms var(--wp-ease); }
-  main > .ap-section .ap-feature:hover, main > .ap-section .ap-feature:focus-within, .wp-note:hover { transform: translateY(calc(-1 * var(--space-1))); box-shadow: var(--shadow-button-hover); }
+  main > .ap-section .ap-feature { transition: transform 400ms var(--wp-ease), box-shadow 400ms var(--wp-ease); }
+  main > .ap-section .ap-feature:hover, main > .ap-section .ap-feature:focus-within { transform: translateY(calc(-1 * var(--space-1))); box-shadow: var(--shadow-button-hover); }
   main > .ap-section .ap-feature-icon > * { transition: transform 400ms var(--wp-ease); }
   main > .ap-section .ap-feature:hover .ap-feature-icon > *, main > .ap-section .ap-feature:focus-within .ap-feature-icon > * { transform: scale(1.12) rotate(-6deg); }
 }

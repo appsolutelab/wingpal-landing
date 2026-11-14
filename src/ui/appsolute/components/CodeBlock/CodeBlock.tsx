@@ -10,11 +10,11 @@ export interface CodeBlockProps {
   /** Mostra "$" davanti a ogni riga, per i comandi da terminale. Il "$" non si seleziona e non si copia. */
   prompt?: boolean;
   /** Testi del bottone, da tradurre per l'inglese. */
-  labels?: { copy?: string; copied?: string; failed?: string };
+  labels?: { copy?: string; copied?: string; failed?: string; code?: string };
 }
 
 export function CodeBlock({ code, title, prompt, labels = {} }: CodeBlockProps) {
-  const { copy = "Copia", copied = "Copiato", failed = "Copia non riuscita" } = labels;
+  const { copy = "Copia", copied = "Copiato", failed = "Copia non riuscita", code: codeLabel = "Codice" } = labels;
   const [state, setState] = React.useState<"idle" | "ok" | "err">("idle");
   React.useEffect(() => {
     if (state === "idle") return;
@@ -35,7 +35,7 @@ export function CodeBlock({ code, title, prompt, labels = {} }: CodeBlockProps) 
           <span aria-live="polite">{state === "ok" ? copied : state === "err" ? failed : copy}</span>
         </Button>
       </figcaption>
-      <pre className="ap-code-pre" tabIndex={0}>
+      <pre className="ap-code-pre" tabIndex={0} role="region" aria-label={title ?? codeLabel}>
         <code>
           {lines.map((l, i) => (
             <span className="ap-code-line" key={i}>

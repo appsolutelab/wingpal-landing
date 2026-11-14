@@ -1,0 +1,30 @@
+/* DayGrid: colonna delle ore a sinistra, una colonna per giorno. Le righe delle ore sono line; l'ora attuale è una linea marigold-strong con un pallino
+   (marigold da solo è troppo chiaro per una linea sottile nel tema chiaro). */
+.ap-daygrid { display: flex; flex-direction: column; min-width: 0; color: var(--ink); }
+.ap-daygrid-head, .ap-daygrid-allday, .ap-daygrid-body { display: grid; }
+.ap-daygrid-head { position: sticky; top: 0; z-index: 2; padding-bottom: var(--space-2); background: var(--bg); }
+.ap-daygrid-dayhead { display: flex; align-items: center; justify-content: center; gap: var(--space-2); min-width: 0; min-height: 40px; padding: 0; border: 0; border-radius: var(--radius-md); background: transparent; color: var(--ink); cursor: pointer; }
+.ap-daygrid-dayhead:hover { box-shadow: var(--shadow-raised-sm); }
+.ap-daygrid-dayhead:focus-visible, .ap-daygrid-event:focus-visible, .ap-daygrid-wholeevent:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ap-daygrid-weekday { font: var(--text-label); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); }
+.ap-daygrid-num { display: grid; place-items: center; min-width: 28px; height: 28px; border-radius: var(--radius-pill); font: var(--text-body-strong); font-variant-numeric: tabular-nums; }
+.ap-daygrid-num-today { background: var(--marigold); color: var(--on-marigold); }
+.ap-daygrid-allday { padding: var(--space-2) 0; border-top: 1px solid var(--line); align-items: start; }
+.ap-daygrid-allday > .ap-daygrid-hour { position: static; transform: none; padding-top: var(--space-1); white-space: normal; }
+.ap-daygrid-alldaycol { display: flex; flex-direction: column; gap: var(--space-1); min-width: 0; padding: 0 var(--space-1); }
+.ap-daygrid-wholeevent { display: block; width: 100%; padding: 0; border: 0; border-radius: var(--radius-sm); background: transparent; color: inherit; font: var(--text-small); text-align: left; cursor: pointer; }
+.ap-daygrid-body { position: relative; border-top: 1px solid var(--line); }
+.ap-daygrid-hours { position: relative; }
+.ap-daygrid-hour { position: absolute; right: var(--space-2); transform: translateY(-50%); font: var(--text-small); font-size: 12px; color: var(--ink-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ap-daygrid-hours .ap-daygrid-hour:first-child { visibility: hidden; }
+.ap-daygrid-col { position: relative; min-width: 0; border-left: 1px solid var(--line); background-image: linear-gradient(var(--line) 1px, transparent 1px); background-size: 100% 48px; background-position: 0 -1px; }
+.ap-daygrid-event { container-type: inline-size; position: absolute; display: block; padding: 0 2px; border: 0; background: transparent; color: inherit; font: var(--text-body); text-align: left; cursor: pointer; box-sizing: border-box; }
+.ap-daygrid-event .ap-event { height: 100%; box-sizing: border-box; }
+/* Eventi sotto l'ora: una riga sola, senza padding verticale, così anche mezz'ora (20px) resta leggibile. */
+.ap-daygrid-event .ap-event-compact { align-items: center; padding-block: 0; font-size: 13px; line-height: 18px; border-radius: var(--radius-sm); }
+.ap-daygrid-event .ap-event-compact::before { inset: 3px auto 3px 6px; }
+.ap-daygrid-event .ap-event-compact .ap-event-time { flex: none; font-size: 12px; }
+/* Colonna stretta (eventi affiancati, settimana intera): resta il titolo, l'orario si legge dalla posizione. */
+@container (max-width: 150px) { .ap-daygrid-event .ap-event-compact .ap-event-time { display: none; } }
+.ap-daygrid-now { position: absolute; left: 0; right: 0; z-index: 1; height: 2px; margin-top: -1px; background: var(--marigold-strong); pointer-events: none; }
+.ap-daygrid-now::before { content: ""; position: absolute; left: -5px; top: -4px; width: 10px; height: 10px; border-radius: var(--radius-pill); background: var(--marigold-strong); }

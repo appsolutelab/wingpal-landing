@@ -1,11 +1,11 @@
 import "./hero.css";
-import { useEffect, useState, type PointerEvent } from "react";
+import type { PointerEvent } from "react";
 import { Bell, CalendarDays, Code, EyeOff, FileText, ListTodo, UserX, WifiOff } from "lucide-react";
 import {
-  Button, FeatureCard, Footer, Hero, LangSwitch, Navbar, RepoCard, Section, ThemeToggle,
-  applyTheme, getInitialTheme, type Theme,
+  Button, Callout, FeatureCard, Footer, Hero, LangSwitch, Navbar, Prose, RepoCard, Section, Steps, ThemeToggle,
+  useTheme,
 } from "./ui/appsolute";
-import { EventBlock, Tag, TaskItem } from "./ui/wingpal";
+import { EventBlock, LinkChip, NoteCard, Tag, TaskItem } from "./ui/wingpal";
 import { it, type Texts } from "./i18n/it";
 import { en } from "./i18n/en";
 import heroLight from "./assets/hero-light.webp";
@@ -64,21 +64,15 @@ function HeroPreview({ t }: { t: Texts["preview"] }) {
 
 function Privacy({ t }: { t: Texts["privacy"] }) {
   return (
-    <section className="ap-section" aria-labelledby="privacy-title">
-      <div className="ap-section-inner wp-privacy">
-        <header className="ap-section-head">
-          <h1 className="ap-section-title" id="privacy-title">{t.title}</h1>
-          <p className="ap-section-lead">{t.lead}</p>
-        </header>
-        {t.sections.map((x) => (
-          <div key={x.title}>
-            <h2>{x.title}</h2>
-            <p>{x.text} {x.link ? <a href={x.link.href}>{x.link.label}</a> : null}</p>
-          </div>
-        ))}
-        <p className="wp-privacy-updated">{t.updated}</p>
-      </div>
-    </section>
+    <Section title={t.title} headingLevel={1} lead={t.lead}>
+      <Prose as="article">
+        {t.sections.flatMap((x) => [
+          <h2 key={x.title}>{x.title}</h2>,
+          <p key={x.title + "-p"}>{x.text} {x.link ? <a href={x.link.href}>{x.link.label}</a> : null}</p>,
+        ])}
+        <p><small>{t.updated}</small></p>
+      </Prose>
+    </Section>
   );
 }
 
@@ -87,19 +81,8 @@ export function App({ lang, page = "home" }: { lang: Lang; page?: "home" | "priv
   const privacy = page === "privacy";
   const base = privacy ? home(lang) : ""; // dalla pagina privacy le ancore tornano alla home
   // Il tema si salva solo quando lo sceglie la persona: fino ad allora la pagina segue il sistema operativo.
-  const [theme, setTheme] = useState<Theme>(() => getInitialTheme(THEME_KEY));
-  const changeTheme = (next: Theme) => { setTheme(next); applyTheme(next, THEME_KEY); };
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const follow = () => {
-      try { if (window.localStorage.getItem(THEME_KEY)) return; } catch { /* storage bloccato: si segue il sistema */ }
-      const next: Theme = mq.matches ? "dark" : "light";
-      setTheme(next);
-      document.documentElement.setAttribute("data-theme", next); // non applyTheme: salverebbe la scelta
-    };
-    mq.addEventListener("change", follow);
-    return () => mq.removeEventListener("change", follow);
-  }, []);
+  const [theme, changeTheme] = useTheme(THEME_KEY);
+  const chipLabels = t.links.chip;
 
   const links = [
     { label: t.nav.features, href: base + "#funzioni" },
@@ -118,7 +101,8 @@ export function App({ lang, page = "home" }: { lang: Lang; page?: "home" | "priv
         logo={<Logo />}
         homeHref={home(lang)}
         links={links}
-        labels={{ nav: t.nav.main, open: t.nav.open, close: t.nav.close }}
+        skipHref="#contenuto"
+        labels={{ nav: t.nav.main, open: t.nav.open, close: t.nav.close, skip: t.nav.skip }}
         actions={
           <>
             <LangSwitch value={lang} label={t.nav.language} onChange={(l) => { window.location.href = (privacy ? privacyUrl(l as Lang) : home(l as Lang)) + window.location.hash; }} />
@@ -126,17 +110,13 @@ export function App({ lang, page = "home" }: { lang: Lang; page?: "home" | "priv
           </>
         }
       />
-      <main>
+      <main id="contenuto">
         {privacy ? <Privacy t={t.privacy} /> : <>
         <Hero
           eyebrow={t.hero.eyebrow}
           title={t.hero.title}
-          lead={
-            <>
-              <span className="wp-hero-status">{t.hero.status}</span>
-              {t.hero.lead}
-            </>
-          }
+          status={t.hero.status}
+          lead={t.hero.lead}
           actions={
             <>
               <Button variant="primary" href={REPO_URL}>{t.hero.primary}</Button>
@@ -158,6 +138,10 @@ export function App({ lang, page = "home" }: { lang: Lang; page?: "home" | "priv
           ))}
         </Section>
 
+        <Section id="scarica">
+          <Callout title={t.download.title} action={<Button size="sm" href={REPO_URL}>{t.download.action}</Button>}>{t.download.text}</Callout>
+        </Section>
+
         <Section id="collegamenti" align="center" eyebrow={t.links.eyebrow} title={t.links.title} lead={t.links.lead}>
           <ol className="wp-chain" role="list">
             <li>
@@ -166,14 +150,15 @@ export function App({ lang, page = "home" }: { lang: Lang; page?: "home" | "priv
             </li>
             <li>
               <span className="wp-chain-step">{t.links.steps[1]}</span>
-              <div className="wp-note">
-                <span className="wp-note-title"># {t.links.noteTitle}</span>
-                {t.links.noteLines.map((l) => <span key={l}>- {l}</span>)}
-              </div>
+              <NoteCard
+                title={t.links.noteTitle}
+                excerpt={t.links.noteLines.join(". ") + "."}
+                links={<LinkChip kind="event" title={t.preview.event1} meta="14:30" labels={chipLabels} />}
+              />
             </li>
             <li>
               <span className="wp-chain-step">{t.links.steps[2]}</span>
-              <TaskItem title={t.preview.task1} due={t.links.taskDue} tag={t.preview.tagSchool} tagColor="sky" labels={taskLabels} />
+              <TaskItem title={t.preview.task1} due={t.links.taskDue} tag={t.preview.tagSchool} tagColor="sky" labels={taskLabels} links={<LinkChip kind="note" title={t.links.noteTitle} labels={chipLabels} />} />
             </li>
           </ol>
         </Section>
@@ -185,13 +170,7 @@ export function App({ lang, page = "home" }: { lang: Lang; page?: "home" | "priv
         </Section>
 
         <Section id="roadmap" eyebrow={t.roadmap.eyebrow} title={t.roadmap.title} lead={t.roadmap.lead}>
-          <ol className="wp-roadmap" role="list">
-            {t.roadmap.items.map((x, i) => (
-              <li key={x.title}>
-                <FeatureCard icon={<span className="wp-roadmap-n">{i + 1}</span>} title={x.title} status={t.roadmap.status}>{x.text}</FeatureCard>
-              </li>
-            ))}
-          </ol>
+          <Steps layout="grid" items={t.roadmap.items.map((x) => ({ ...x, status: t.roadmap.status }))} />
         </Section>
 
         <Section id="chi-siamo" eyebrow={t.about.eyebrow} title={t.about.title}>

@@ -1,0 +1,7 @@
+/* EmptyState: centrato, con l'icona in un pozzetto scavato come nelle FeatureCard. */
+.ap-empty { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-8) var(--space-4); text-align: center; color: var(--ink); }
+.ap-empty-icon { display: grid; place-items: center; width: 56px; height: 56px; margin-bottom: var(--space-2); border-radius: var(--radius-lg); background: var(--surface-sunken); box-shadow: var(--shadow-inset); color: var(--ink-muted); }
+.ap-empty-title { margin: 0; font: var(--text-heading); color: var(--ink); text-wrap: balance; }
+.ap-empty-text { max-width: 44ch; font: var(--text-body); color: var(--ink-muted); }
+.ap-empty-text > p { margin: 0; }
+.ap-empty-action { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3); margin-top: var(--space-3); }

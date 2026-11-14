@@ -1,13 +1,15 @@
 /* TextField: scavato nello sfondo, con un bordo sottile per chi vede poco */
 .ap-field { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
 .ap-field label { font: 600 13px/18px var(--font-sans); color: var(--ink); transition: color .2s; }
-.ap-field input { min-height: 44px; box-sizing: border-box; padding: var(--space-2) var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--line-strong); background: var(--surface-sunken); box-shadow: var(--shadow-inset); color: var(--ink); font: 400 15px/22px var(--font-sans); caret-color: var(--accent); transition: border-color .2s, background-color .2s, box-shadow .25s ease-out; }
+.ap-field :is(input, textarea) { min-height: 44px; box-sizing: border-box; padding: var(--space-2) var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--line-strong); background: var(--surface-sunken); box-shadow: var(--shadow-inset); color: var(--ink); font: 400 15px/22px var(--font-sans); caret-color: var(--accent); transition: border-color .2s, background-color .2s, box-shadow .25s ease-out; }
 /* Selezione: il campo si schiarisce, il bordo diventa scuro da 2px e intorno si allarga un alone. */
-.ap-field input:focus { outline: none; border-color: var(--accent); background: var(--surface); box-shadow: var(--shadow-inset), inset 0 0 0 1px var(--accent), 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent); }
+.ap-field :is(input, textarea):focus { outline: none; border-color: var(--accent); background: var(--surface); box-shadow: var(--shadow-inset), inset 0 0 0 1px var(--accent), 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent); }
 .ap-field:focus-within label { color: var(--accent); }
-.ap-field input::placeholder { color: var(--ink-muted); }
+.ap-field :is(input, textarea)::placeholder { color: var(--ink-muted); }
 .ap-field-hint { font-size: 13px; line-height: 18px; color: var(--ink-muted); }
-.ap-field-error input { border-color: var(--danger); border-width: 2px; }
+.ap-field-error :is(input, textarea) { border-color: var(--danger); border-width: 2px; }
 .ap-field-error .ap-field-hint { color: var(--danger); }
-.ap-field-error input:focus { border-color: var(--danger); box-shadow: var(--shadow-inset), inset 0 0 0 1px var(--danger), 0 0 0 4px color-mix(in srgb, var(--danger) 20%, transparent); }
+.ap-field-error :is(input, textarea):focus { border-color: var(--danger); box-shadow: var(--shadow-inset), inset 0 0 0 1px var(--danger), 0 0 0 4px color-mix(in srgb, var(--danger) 20%, transparent); }
 .ap-field-error:focus-within label { color: var(--danger); }
+.ap-field textarea { display: block; width: 100%; min-height: 96px; resize: vertical; }
+.ap-field :is(input, textarea):disabled { box-shadow: none; color: var(--ink-muted); opacity: .7; cursor: not-allowed; }

@@ -1,0 +1,24 @@
+/* Prose: colonna larga al massimo 720px. I link sono ink sottolineati: così il contrasto regge in entrambi i temi. */
+.ap-prose { max-width: 720px; font: var(--text-body); color: var(--ink); overflow-wrap: break-word; }
+.ap-prose > * { margin: 0; }
+.ap-prose > * + * { margin-top: var(--space-4); }
+.ap-prose h1 { font: var(--text-title); letter-spacing: -0.01em; text-wrap: balance; }
+.ap-prose h2 { font: var(--text-heading); }
+.ap-prose h3 { font: var(--text-body-strong); }
+.ap-prose > * + h2 { margin-top: var(--space-8); }
+.ap-prose > * + h3 { margin-top: var(--space-6); }
+.ap-prose > h2 + *, .ap-prose > h3 + * { margin-top: var(--space-2); }
+.ap-prose ul, .ap-prose ol { padding-left: var(--space-6); }
+.ap-prose li + li { margin-top: var(--space-1); }
+.ap-prose a { color: var(--ink); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; border-radius: var(--radius-sm); }
+.ap-prose a:hover { text-decoration-thickness: 2.5px; }
+.ap-prose a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.ap-prose code { padding: 1px var(--space-1); border-radius: var(--radius-sm); background: var(--surface-sunken); font: var(--text-mono); }
+.ap-prose pre { padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--line); background: var(--surface-sunken); box-shadow: var(--shadow-inset); overflow-x: auto; }
+.ap-prose pre code { padding: 0; background: none; }
+.ap-prose blockquote { padding: var(--space-4); border-radius: var(--radius-md); background: var(--surface-sunken); box-shadow: var(--shadow-inset); color: var(--ink-muted); }
+.ap-prose hr { height: 1px; border: 0; background: var(--line); margin-block: var(--space-8); }
+.ap-prose small, .ap-prose .ap-prose-meta { font: var(--text-small); color: var(--ink-muted); }
+.ap-prose table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.ap-prose th, .ap-prose td { padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.ap-prose th { font: var(--text-label); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); }

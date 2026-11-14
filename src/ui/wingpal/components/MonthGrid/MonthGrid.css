@@ -1,0 +1,20 @@
+/* MonthGrid: griglia piatta divisa da line; in rilievo ci sono solo gli eventi. Oggi è il numero pieno di marigold. */
+.ap-month { display: flex; flex-direction: column; min-width: 0; height: 100%; color: var(--ink); }
+.ap-month-head, .ap-month-week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.ap-month-weekday { padding: 0 var(--space-2) var(--space-2); font: var(--text-label); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); }
+.ap-month-week { flex: 1 1 0; border-top: 1px solid var(--line); }
+.ap-month-day { container-type: inline-size; display: flex; flex-direction: column; gap: 6px; min-width: 0; min-height: 104px; padding: var(--space-1) 6px var(--space-2); box-sizing: border-box; }
+.ap-month-day + .ap-month-day { border-left: 1px solid var(--line); }
+.ap-month-day-selected { background: var(--accent-soft); }
+.ap-month-num { flex: none; align-self: flex-start; display: grid; place-items: center; min-width: 28px; height: 28px; padding: 0 var(--space-1); border: 0; border-radius: var(--radius-pill); background: transparent; color: var(--ink); font: var(--text-small); font-weight: 600; font-variant-numeric: tabular-nums; cursor: pointer; transition: box-shadow .15s; }
+.ap-month-num:hover { box-shadow: var(--shadow-raised-sm); }
+.ap-month-day-out .ap-month-num { color: var(--ink-muted); font-weight: 400; }
+.ap-month-num-today, .ap-month-day-out .ap-month-num-today { background: var(--marigold); color: var(--on-marigold); font-weight: 700; }
+.ap-month-event { display: block; width: 100%; min-width: 0; padding: 0; border: 0; border-radius: var(--radius-sm); background: transparent; color: inherit; font: var(--text-small); text-align: left; cursor: pointer; }
+/* Nel mese l'orario viene prima del titolo, come in ogni calendario; nelle celle strette resta solo il titolo. */
+.ap-month-event .ap-event-time { order: -1; flex: none; font-size: 12px; }
+.ap-month-event .ap-event-title { flex: 1; min-width: 0; }
+@container (max-width: 116px) { .ap-month-event .ap-event-time { display: none; } }
+.ap-month-more { align-self: flex-start; padding: 0 var(--space-2); border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--ink-muted); font: var(--text-small); font-weight: 600; cursor: pointer; }
+.ap-month-more:hover { color: var(--ink); text-decoration: underline; }
+.ap-month-num:focus-visible, .ap-month-event:focus-visible, .ap-month-more:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }

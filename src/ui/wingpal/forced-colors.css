@@ -1,0 +1,14 @@
+/* Contrasto elevato di Windows (forced-colors), per i componenti di WingPal: stesso principio di Appsolute.
+   I colori dei calendari restano quelli scelti dalla persona, perché servono a distinguere gli eventi. */
+@media (forced-colors: active) {
+  .ap-task, .ap-event, .ap-poll, .ap-poll-opt, .ap-tag, .ap-note, .ap-linkchip, .ap-reminder, .ap-shell-sidebar, .ap-shell-aside,
+  .ap-settings-card { outline: 1px solid CanvasText; outline-offset: -1px; }
+  .ap-event::before, .ap-tag-dot, .ap-side-dot, .ap-swatch { forced-color-adjust: none; }
+  .ap-task-done .ap-check, .ap-month-num-today, .ap-daygrid-num-today, .ap-reminder-icon, .ap-tag-reminder,
+  .ap-quickadd-submit:not(:disabled) { forced-color-adjust: none; background: Highlight; color: HighlightText; border-color: Highlight; }
+  .ap-side-item-active, .ap-note-active, .ap-month-day-selected, .ap-poll-opt-mine { outline: 2px solid Highlight; outline-offset: -2px; }
+  .ap-daygrid-now, .ap-daygrid-now::before { forced-color-adjust: none; background: Highlight; }
+  .ap-poll-bar { display: none; }
+}
+/* Senza gradienti la riga che barra il titolo sparisce: qui torna come normale testo barrato. */
+@media (forced-colors: active) { .ap-task-done .ap-task-title-text { text-decoration: line-through; } }

@@ -3,11 +3,20 @@
 .ap-hero-text { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4); max-width: 640px; }
 .ap-hero-eyebrow { margin: 0; font: var(--text-label); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); }
 .ap-hero-title { margin: 0; font: var(--text-display); letter-spacing: -0.02em; color: var(--ink); text-wrap: balance; }
+.ap-hero-status { margin: 0; }
+.ap-hero-status .ap-badge { white-space: normal; }
 .ap-hero-lead { margin: 0; font: var(--text-heading); font-family: var(--font-sans); font-weight: 400; color: var(--ink-muted); max-width: 56ch; }
 .ap-hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-2); }
 .ap-hero-note { margin: 0; font: var(--text-small); color: var(--ink-muted); }
 .ap-hero-media { min-width: 0; }
 .ap-hero-media > img, .ap-hero-media > svg { display: block; max-width: 100%; height: auto; }
+
+/* Telefoni: il titolo display scende a 32px, così un titolo lungo non occupa mezzo schermo. */
+@media (max-width: 480px) {
+  .ap-hero { padding-block: var(--space-8); }
+  .ap-hero-title { font-size: 32px; line-height: 36px; }
+  .ap-hero-lead { font-size: 17px; line-height: 24px; }
+}
 
 @media (min-width: 900px) {
   .ap-hero { padding: var(--space-12) var(--space-8); min-height: 520px; }

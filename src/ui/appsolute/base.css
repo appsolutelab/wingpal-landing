@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=JetBrains+Mono:wght@400;600&display=swap");
 
 /* Appsolute — stili dei componenti, stile neumorfico. Ogni colore e ogni ombra vengono dai token. */
+/* I controlli del browser (calendario di <input type=date>, barre di scorrimento, riempimento automatico) seguono il tema. */
+:root, [data-theme="light"] { color-scheme: light; }
+[data-theme="dark"] { color-scheme: dark; }
 body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-sans); font-size: 15px; line-height: 22px; }
 .ap-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); padding: var(--space-6); }
 .ap-stack { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-6); max-width: 420px; }
@@ -17,3 +20,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 /* Al cambio di tema i colori cambiano subito, senza animare ombre e sfondi (applyTheme mette questa classe per un istante).
    Solo il pomello dello Switch continua a scorrere. */
 .ap-theme-switching *:not(.ap-switch-knob), .ap-theme-switching *::before, .ap-theme-switching *::after { transition: none !important; }
+
+/* Testo che vedono solo gli screen reader (es. il nome del sistema accanto a "Scarica"). */
+.ap-sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }

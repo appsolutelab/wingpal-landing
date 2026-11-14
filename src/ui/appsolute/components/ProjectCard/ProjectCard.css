@@ -1,0 +1,12 @@
+/* ProjectCard: come RepoCard, tutta la card è un link e sale al passaggio. Il logo sta in un pozzetto da 56px. */
+.ap-project { position: relative; top: 0; display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; padding: var(--space-6); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-raised); color: var(--ink); text-decoration: none; transition: box-shadow .2s, top .12s ease-out; }
+.ap-project:hover { top: -1px; box-shadow: var(--shadow-button-hover); }
+.ap-project:active { top: 1px; box-shadow: var(--shadow-inset); }
+.ap-project:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.ap-project-top { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); min-width: 0; }
+.ap-project-logo { flex: none; display: grid; place-items: center; width: 56px; height: 56px; border-radius: var(--radius-lg); background: var(--surface-sunken); box-shadow: var(--shadow-inset); color: var(--ink); font: var(--text-title); }
+.ap-project-logo > * { width: 32px; height: 32px; }
+.ap-project-name { margin: 0; font: var(--text-heading); color: var(--ink); }
+.ap-project-desc { font: var(--text-body); color: var(--ink-muted); }
+.ap-project-meta { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.ap-project-cta { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: auto; padding-top: var(--space-1); color: var(--accent); font: var(--text-body-strong); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; }

@@ -1,0 +1,10 @@
+/* LinkChip: pillola in rilievo piccolo, come Tag, ma cliccabile; premuta affonda. */
+.ap-linkchip { display: inline-flex; align-items: stretch; max-width: 100%; border-radius: var(--radius-pill); background: var(--surface); box-shadow: var(--shadow-raised-sm); color: var(--ink); transition: box-shadow .15s; }
+.ap-linkchip:has(.ap-linkchip-open:active) { box-shadow: var(--shadow-inset); }
+.ap-linkchip-open { display: inline-flex; align-items: center; gap: var(--space-2); min-width: 0; min-height: 34px; padding: var(--space-1) var(--space-3); border: 0; border-radius: var(--radius-pill); background: transparent; color: inherit; font: 600 13px/18px var(--font-sans); cursor: pointer; }
+.ap-linkchip-icon { flex: none; display: grid; color: var(--ink-muted); }
+.ap-linkchip-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ap-linkchip-meta { flex: none; font-weight: 400; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.ap-linkchip-remove { flex: none; display: grid; place-items: center; width: 34px; margin-left: calc(var(--space-2) * -1); border: 0; border-radius: var(--radius-pill); background: transparent; color: var(--ink-muted); cursor: pointer; }
+.ap-linkchip-remove:hover { color: var(--danger); }
+.ap-linkchip-open:focus-visible, .ap-linkchip-remove:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }

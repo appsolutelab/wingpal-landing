@@ -1,0 +1,13 @@
+/* Faq: ogni domanda è una card in rilievo; aperta, affonda nello sfondo (come un bottone premuto) e mostra la risposta. */
+.ap-faq { display: flex; flex-direction: column; gap: var(--space-4); max-width: 720px; }
+.ap-faq-item { border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-raised); color: var(--ink); transition: box-shadow .2s ease-out, background-color .2s ease-out; }
+.ap-faq-item[open] { background: var(--surface-sunken); box-shadow: var(--shadow-inset); }
+.ap-faq-q { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 44px; padding: var(--space-4) var(--space-6); box-sizing: border-box; border-radius: var(--radius-lg); font: var(--text-body-strong); color: var(--ink); cursor: pointer; list-style: none; }
+.ap-faq-q::-webkit-details-marker { display: none; }
+.ap-faq-q:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.ap-faq-chevron { flex: none; display: grid; color: var(--ink-muted); transition: transform .2s ease-out; }
+.ap-faq-item[open] .ap-faq-chevron { transform: rotate(180deg); }
+.ap-faq-a { padding: 0 var(--space-6) var(--space-6); font: var(--text-body); color: var(--ink-muted); max-width: 64ch; }
+.ap-faq-a > p { margin: 0; }
+.ap-faq-a > p + p { margin-top: var(--space-2); }
+.ap-faq-a a { color: var(--accent); font-weight: 600; text-underline-offset: 3px; }

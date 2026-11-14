@@ -9,6 +9,7 @@ export const en: Texts = {
     main: "Main menu",
     open: "Open the menu",
     close: "Close the menu",
+    skip: "Skip to content",
     language: "Language",
     theme: "Theme",
     light: "Light theme",
@@ -67,6 +68,12 @@ export const en: Texts = {
     noteTitle: "Project meeting",
     noteLines: ["Agreed on the delivery schedule", "We need a demo by Friday"],
     taskDue: "Friday · 09:00",
+    chip: { event: "Event", note: "Note", task: "Task" },
+  },
+  download: {
+    title: "In development",
+    text: "The first version is planned for January 2027. Until it's out there is nothing to download: meanwhile you can read the code.",
+    action: "View the code",
   },
   principles: {
     eyebrow: "Principles",
