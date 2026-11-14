@@ -1,11 +1,11 @@
 import "./hero.css";
 import type { PointerEvent } from "react";
-import { Bell, CalendarDays, Code, EyeOff, FileText, ListTodo, UserX, WifiOff } from "lucide-react";
+import { Bell, CalendarDays, Code, EyeOff, FileText, ListTodo, MousePointerClick, UserX, WifiOff } from "lucide-react";
 import {
-  Button, Callout, FeatureCard, Footer, Hero, LangSwitch, Navbar, Prose, RepoCard, Section, Steps, ThemeToggle,
+  Button, FeatureCard, Footer, Hero, LangSwitch, Navbar, Prose, RepoCard, Section, Steps, ThemeToggle,
   useTheme,
 } from "./ui/appsolute";
-import { EventBlock, LinkChip, NoteCard, Tag, TaskItem } from "./ui/wingpal";
+import { EventBlock, LinkChip, MonthGrid, NoteCard, Reminder, Tag, TaskItem } from "./ui/wingpal";
 import { it, type Texts } from "./i18n/it";
 import { en } from "./i18n/en";
 import heroLight from "./assets/hero-light.webp";
@@ -17,6 +17,8 @@ type Lang = "it" | "en";
 const REPO_NAME = "appsolutelab/wingpal-landing";
 const REPO_URL = "https://github.com/" + REPO_NAME;
 const LICENSE_URL = "https://www.gnu.org/licenses/agpl-3.0.html";
+// Sito di appsolute (repo appsolutelab/appsolute-landing): la versione inglese sta in /en/.
+const companyUrl = (lang: Lang) => "https://appsolutelab.github.io/appsolute-landing/" + (lang === "en" ? "en/" : "");
 const THEME_KEY = "wingpal-theme";
 
 const home = (lang: Lang) => import.meta.env.BASE_URL + (lang === "en" ? "en/" : "");
@@ -58,6 +60,7 @@ function HeroPreview({ t }: { t: Texts["preview"] }) {
         <TaskItem title={t.task1} due={t.task1Due} tag={t.tagSchool} tagColor="sky" labels={labels} />
         <TaskItem title={t.task2} due={t.task2Due} labels={labels} />
       </section>
+      <p className="wp-hero-hint"><MousePointerClick size={16} strokeWidth={1.75} aria-hidden="true" />{t.hint}</p>
     </div>
   );
 }
@@ -90,8 +93,16 @@ export function App({ lang, page = "home" }: { lang: Lang; page?: "home" | "priv
     { label: t.nav.roadmap, href: base + "#roadmap" },
     { label: t.nav.about, href: base + "#chi-siamo" },
   ];
+  const problemIcons = [CalendarDays, FileText, ListTodo];
   const featureIcons = [CalendarDays, ListTodo, FileText, Bell];
   const principleIcons = [WifiOff, UserX, EyeOff, Code];
+  // Esempio fisso (novembre 2026): serve solo a mostrare la vista mese, non è una data del prodotto.
+  const monthEvents = [
+    { id: "a", date: "2026-11-10", title: t.preview.event2, start: "17:00", color: "coral" as const },
+    { id: "b", date: "2026-11-14", title: t.preview.event1, start: "14:30", color: "sky" as const },
+    { id: "c", date: "2026-11-17", title: t.preview.event2, start: "17:00", color: "coral" as const },
+    { id: "d", date: "2026-11-19", title: t.preview.event1, start: "14:30", color: "sky" as const },
+  ];
   const taskLabels = { markDone: t.preview.markDone, markTodo: t.preview.markTodo, late: t.preview.late };
 
   return (
@@ -120,36 +131,28 @@ export function App({ lang, page = "home" }: { lang: Lang; page?: "home" | "priv
           actions={
             <>
               <Button variant="primary" href={REPO_URL}>{t.hero.primary}</Button>
-              <Button href="#funzioni">{t.hero.secondary}</Button>
+              <Button href="#collegamenti">{t.hero.secondary}</Button>
             </>
           }
           media={<HeroPreview t={t.preview} />}
         />
 
-        <Section id="problema" eyebrow={t.problem.eyebrow} title={t.problem.title} lead={t.problem.lead} grid>
-          {t.problem.items.map((x) => (
-            <FeatureCard key={x.title} title={x.title}>{x.text}</FeatureCard>
-          ))}
-        </Section>
-
-        <Section id="funzioni" eyebrow={t.features.eyebrow} title={t.features.title} lead={t.features.lead} grid>
-          {t.features.items.map((x, i) => (
-            <FeatureCard key={x.title} icon={icon(featureIcons[i])} title={x.title}>{x.text}</FeatureCard>
-          ))}
-        </Section>
-
-        <Section id="scarica">
-          <Callout title={t.download.title} action={<Button size="sm" href={REPO_URL}>{t.download.action}</Button>}>{t.download.text}</Callout>
+        <Section id="problema" eyebrow={t.problem.eyebrow} title={t.problem.title} lead={t.problem.lead}>
+          <div className="ap-section-grid wp-apart">
+            {t.problem.items.map((x, i) => (
+              <FeatureCard key={x.title} icon={icon(problemIcons[i])} title={x.title} status={x.tag}>{x.text}</FeatureCard>
+            ))}
+          </div>
         </Section>
 
         <Section id="collegamenti" align="center" eyebrow={t.links.eyebrow} title={t.links.title} lead={t.links.lead}>
           <ol className="wp-chain" role="list">
             <li>
-              <span className="wp-chain-step">{t.links.steps[0]}</span>
+              <span className="wp-chain-step"><span className="wp-chain-n" aria-hidden="true">1</span>{t.links.steps[0]}</span>
               <EventBlock title={t.preview.event1} time="14:30–16:00" place={t.preview.event1Place} color="sky" />
             </li>
             <li>
-              <span className="wp-chain-step">{t.links.steps[1]}</span>
+              <span className="wp-chain-step"><span className="wp-chain-n" aria-hidden="true">2</span>{t.links.steps[1]}</span>
               <NoteCard
                 title={t.links.noteTitle}
                 excerpt={t.links.noteLines.join(". ") + "."}
@@ -157,10 +160,27 @@ export function App({ lang, page = "home" }: { lang: Lang; page?: "home" | "priv
               />
             </li>
             <li>
-              <span className="wp-chain-step">{t.links.steps[2]}</span>
+              <span className="wp-chain-step"><span className="wp-chain-n" aria-hidden="true">3</span>{t.links.steps[2]}</span>
               <TaskItem title={t.preview.task1} due={t.links.taskDue} tag={t.preview.tagSchool} tagColor="sky" labels={taskLabels} links={<LinkChip kind="note" title={t.links.noteTitle} labels={chipLabels} />} />
             </li>
           </ol>
+        </Section>
+
+        <Section id="funzioni" eyebrow={t.features.eyebrow} title={t.features.title} lead={t.features.lead}>
+          <div className="wp-split">
+            <div className="wp-split-list">
+              {t.features.items.map((x, i) => (
+                <FeatureCard key={x.title} icon={icon(featureIcons[i])} title={x.title}>{x.text}</FeatureCard>
+              ))}
+            </div>
+            <div className="wp-split-visual" role="img" aria-label={t.features.cal.label}>
+              {/* Solo illustrazione: inert toglie la griglia dal tab e dagli screen reader (React 18 non conosce inert). */}
+              <div className="wp-split-month" {...{ inert: "" }}>
+                <MonthGrid year={2026} month={10} today="2026-11-14" events={monthEvents} maxPerDay={2} locale={lang} labels={{ today: t.features.cal.today }} />
+              </div>
+              <Reminder className="wp-split-reminder" title={t.preview.event1} time={t.features.cal.reminderTime} labels={{ kind: t.features.cal.reminderKind }} />
+            </div>
+          </div>
         </Section>
 
         <Section id="principi" eyebrow={t.principles.eyebrow} title={t.principles.title} grid>
@@ -170,16 +190,24 @@ export function App({ lang, page = "home" }: { lang: Lang; page?: "home" | "priv
         </Section>
 
         <Section id="roadmap" eyebrow={t.roadmap.eyebrow} title={t.roadmap.title} lead={t.roadmap.lead}>
-          <Steps layout="grid" items={t.roadmap.items.map((x) => ({ ...x, status: t.roadmap.status }))} />
+          <Steps items={t.roadmap.items.map((x) => ({ ...x, status: t.roadmap.status }))} />
         </Section>
 
         <Section id="chi-siamo" eyebrow={t.about.eyebrow} title={t.about.title}>
           <div className="wp-about">
             <div className="wp-about-text">
-              <div className="wp-about-logo" role="img" aria-label="Appsolute Lab"><span className="wp-about-mark" /><span className="wp-about-wordmark" /></div>
+              <div className="wp-about-logo" role="img" aria-label="appsolute"><span className="wp-about-mark" /><span className="wp-about-wordmark" /></div>
               <p>{t.about.text}</p>
+              <div><Button href={companyUrl(lang)}>{t.about.companyLink}</Button></div>
             </div>
             <RepoCard name={REPO_NAME} href={REPO_URL} description={t.about.repoDescription} license="AGPL-3.0" linkLabel={t.about.repoLink} />
+          </div>
+        </Section>
+
+        <Section id="segui" align="center" eyebrow={t.follow.eyebrow} title={t.follow.title} lead={t.follow.lead}>
+          <div className="wp-cta">
+            <Button variant="primary" href={REPO_URL}>{t.follow.primary}</Button>
+            <Button href={companyUrl(lang)}>{t.follow.secondary}</Button>
           </div>
         </Section>
         </>}
@@ -191,7 +219,7 @@ export function App({ lang, page = "home" }: { lang: Lang; page?: "home" | "priv
         navLabel={t.footer.nav}
         columns={[
           { title: t.footer.page, links },
-          { title: t.footer.project, links: [{ label: t.footer.code, href: REPO_URL }, { label: t.footer.license, href: LICENSE_URL }, { label: t.footer.privacy, href: privacyUrl(lang) }] },
+          { title: t.footer.project, links: [{ label: t.footer.code, href: REPO_URL }, { label: t.footer.license, href: LICENSE_URL }, { label: t.footer.company, href: companyUrl(lang) }, { label: t.footer.privacy, href: privacyUrl(lang) }] },
         ]}
         bottom={t.footer.bottom}
       />

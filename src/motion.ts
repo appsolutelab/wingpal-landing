@@ -3,6 +3,9 @@ const TARGETS = [
   "main > .ap-section .ap-section-head",
   "main > .ap-section .ap-section-grid > *",
   ".wp-chain > li",
+  ".wp-split-list > *",
+  ".wp-split-visual",
+  ".wp-cta",
   ".ap-steps > li",
   ".wp-about > *",
 ].join(",");

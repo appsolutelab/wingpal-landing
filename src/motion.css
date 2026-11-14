@@ -6,8 +6,7 @@
 
 /* Collegamenti, desktop: una linea unisce le etichette dei tre passi (evento → nota → attività). */
 @media (min-width: 900px) {
-  .wp-chain > li:not(:last-child) > .wp-chain-step { display: flex; align-items: center; gap: var(--space-3); }
-  .wp-chain > li:not(:last-child) > .wp-chain-step::after { content: ""; flex: 1; margin-right: calc(var(--space-3) - var(--space-8)); border-top: 1px solid var(--accent); transform-origin: left; }
+    .wp-chain > li:not(:last-child) > .wp-chain-step::after { content: ""; flex: 1; margin-right: calc(var(--space-3) - var(--space-8)); border-top: 1px solid var(--accent); transform-origin: left; }
 }
 
 @media screen and (prefers-reduced-motion: no-preference) {
