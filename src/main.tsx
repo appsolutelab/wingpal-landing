@@ -4,6 +4,7 @@ import "./ui/appsolute/styles.css";
 import "./ui/wingpal/styles.css";
 import "./App.css";
 import "./motion.css";
+import "./backdrop.css";
 import { App } from "./App";
 import { initMotion } from "./motion";
 

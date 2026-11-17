@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 170" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Illustrazione originale: tre app separate (calendario, note, attività) con i collegamenti interrotti. Maschera: il colore arriva dai token. -->
+  <rect x="6" y="34" width="104" height="96" rx="12"/><path d="M6 56H110"/>
+  <rect x="16" y="66" width="84" height="52" rx="4"/><path d="M37 66V118M58 66V118M79 66V118M16 84H100M16 101H100"/>
+  <rect x="158" y="58" width="104" height="96" rx="12"/><path d="M158 80H262"/>
+  <path d="M170 96H250M170 108H238M170 120H246M170 132H214"/>
+  <rect x="310" y="34" width="104" height="96" rx="12"/><path d="M310 56H414"/>
+  <rect x="320" y="88" width="12" height="12" rx="3"/><rect x="320" y="108" width="12" height="12" rx="3"/>
+  <path d="M340 74H400M340 94H390M340 114H396"/>
+  <g fill="#000" stroke="none"><circle cx="28" cy="45" r="3"/><circle cx="38" cy="45" r="3"/><circle cx="180" cy="69" r="3"/><circle cx="190" cy="69" r="3"/><circle cx="332" cy="45" r="3"/><circle cx="342" cy="45" r="3"/></g>
+  <g stroke-dasharray="3 6"><path d="M114 82C126 82 126 88 129 90"/><path d="M139 98C142 100 144 106 154 106"/><path d="M266 106C278 106 278 100 281 98"/><path d="M291 90C294 88 296 82 306 82"/></g>
+  <path d="M131 91L137 97M137 91L131 97M283 91L289 97M289 91L283 97"/>
+</svg>

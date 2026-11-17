@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 320">
+  <!-- Le parti a colore di roadmap.svg: il pallino di ogni tappa e la bandiera (i colori stanno nel CSS, a fasce). -->
+  <circle cx="96" cy="256" r="6"/><circle cx="212" cy="198" r="6"/><circle cx="316" cy="122" r="6"/><circle cx="396" cy="48" r="6"/>
+  <path d="M428 9H450L444 16L450 23H428Z"/>
+</svg>

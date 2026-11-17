@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 170">
+  <!-- Le parti a colore di problem.svg: un colore di calendario per app (lo sfondo a fasce sta nel CSS). -->
+  <circle cx="18" cy="45" r="4"/><rect x="39" y="87" width="17" height="5" rx="2.5"/><rect x="60" y="104" width="17" height="5" rx="2.5"/>
+  <circle cx="170" cy="69" r="4"/><rect x="168" y="91" width="4" height="10" rx="2"/>
+  <circle cx="322" cy="45" r="4"/><rect x="320" y="68" width="12" height="12" rx="3"/>
+</svg>

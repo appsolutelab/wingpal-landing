@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Illustrazione originale: il foglio di gennaio 2027 (il primo è venerdì). Maschera. -->
+  <rect x="30" y="24" width="140" height="128" rx="12"/><path d="M30 54H170M66 14V32M134 14V32"/>
+  <g fill="#000" stroke="none">
+    <circle cx="134" cy="70" r="2.5"/><circle cx="152" cy="70" r="2.5"/>
+    <g id="w"><circle cx="48" cy="86" r="2.5"/><circle cx="65" cy="86" r="2.5"/><circle cx="82" cy="86" r="2.5"/><circle cx="100" cy="86" r="2.5"/><circle cx="117" cy="86" r="2.5"/><circle cx="134" cy="86" r="2.5"/><circle cx="152" cy="86" r="2.5"/></g>
+    <use href="#w" y="16"/><use href="#w" y="32"/><use href="#w" y="48"/>
+  </g>
+</svg>

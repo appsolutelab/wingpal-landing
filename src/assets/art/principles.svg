@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 96" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Illustrazione originale: il computer tiene i dati in locale; cloud e rete restano fuori (barrati). Maschera. -->
+  <rect x="196" y="8" width="88" height="58" rx="7"/><path d="M180 72H300L292 84H188Z"/>
+  <path d="M234 34V30A6 6 0 0 1 246 30V34"/>
+  <path d="M64 62H114A13 13 0 0 0 114 36A19 19 0 0 0 78 31A14 14 0 0 0 64 62Z"/><path d="M60 22L122 74"/>
+  <path d="M360 46Q390 20 420 46M370 57Q390 41 410 57M380 67Q390 60 400 67"/><path d="M362 24L418 82"/>
+  <circle cx="390" cy="76" r="3.5" fill="#000" stroke="none"/>
+  <path d="M134 46H170M310 46H346" stroke-dasharray="3 7"/>
+</svg>

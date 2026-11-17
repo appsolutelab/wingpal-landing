@@ -66,6 +66,8 @@ src/
   main.tsx          legge la lingua da <html lang> e monta la pagina
   App.tsx           la pagina, riceve la lingua
   App.css           stili della sola landing (prefisso wp-)
+  backdrop.css      sfondi e illustrazioni decorative, fermi e solo con i token
+  assets/art/       illustrazioni originali in SVG, usate come maschere da backdrop.css
   i18n/it.ts, en.ts
   ui/appsolute/     copia del design system appsolute (non modificare)
   ui/wingpal/       copia del design system WingPal (non modificare)

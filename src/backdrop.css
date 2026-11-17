@@ -1,0 +1,228 @@
+/* Sfondi e illustrazioni decorative della landing WingPal (prefisso wp-), sullo schema di
+   Landings/Company/src/backdrop.css. Solo token: le tinte nascono da color-mix con --ink, --line,
+   --bg, --surface-raised, --marigold e i colori dei calendari (--cal-*), quindi seguono da sole il
+   tema chiaro e scuro (nessun override per tema).
+   Tutto è fermo (nessuna animazione nuova), sta dietro al contenuto (z-index -1 dentro main),
+   non riceve il puntatore e non cambia l'altezza di nessuna sezione.
+   Livelli: section::before = fondale a tutta larghezza; .ap-section-inner::before = disegno al tratto
+   (maschera SVG tinta di --ink); .ap-section-inner::after = le sue parti a colore (stessa maschera,
+   sotto un fondo a fasce con i colori dei calendari). Le maschere sono piccole (max 460px) e solo da
+   1000px in su; i fondali a tutta larghezza non usano mask né filter (in Firefox costano a ogni frame
+   del reveal). Il picco di ogni alone resta sotto il 20% di colore e lontano dal testo: il contrasto
+   del testo resta sopra 4.5:1. */
+
+main#contenuto { position: relative; isolation: isolate; overflow-x: clip; }
+main > .ap-hero, main > .ap-section, main > .ap-section > .ap-section-inner { position: relative; }
+
+main > .ap-hero::before, main > .ap-section::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  inset: 0 calc(50% - 50vw); /* esce dal contenitore da 1120px: tutta la larghezza */
+}
+
+:root {
+  /* Dissolvenza in alto e in basso: nessun fondale finisce con un bordo netto al confine della sezione. */
+  --wp-fade: linear-gradient(var(--bg), transparent 96px, transparent calc(100% - 96px), var(--bg));
+  --wp-dots: radial-gradient(circle, color-mix(in oklab, var(--ink) 18%, transparent) 1.2px, transparent 1.7px) center / var(--space-6) var(--space-6);
+}
+
+/* 1. Hero: luce dietro l'anteprima, aloni nei colori della card "Oggi" (azzurro dell'evento in alto,
+   marigold del promemoria sotto la card, corallo lontano in basso a sinistra) e griglia di punti
+   solo intorno all'anteprima. */
+main > .ap-hero::before {
+  background:
+    var(--wp-fade),
+    radial-gradient(ellipse 34% 60% at 72% 46%,
+      var(--surface-raised) 0%,
+      color-mix(in oklab, var(--surface-raised) 75%, transparent) 30%,
+      color-mix(in oklab, var(--surface-raised) 35%, transparent) 58%,
+      color-mix(in oklab, var(--surface-raised) 10%, transparent) 80%,
+      transparent 100%),
+    radial-gradient(ellipse 26% 42% at 84% 18%,
+      color-mix(in oklab, var(--cal-sky) 16%, transparent) 0%,
+      color-mix(in oklab, var(--cal-sky) 9%, transparent) 40%,
+      color-mix(in oklab, var(--cal-sky) 3%, transparent) 72%,
+      transparent 100%),
+    radial-gradient(ellipse 22% 30% at 70% 90%,
+      color-mix(in oklab, var(--marigold) 14%, transparent) 0%,
+      color-mix(in oklab, var(--marigold) 10%, transparent) 40%,
+      color-mix(in oklab, var(--marigold) 3%, transparent) 72%,
+      transparent 100%),
+    radial-gradient(ellipse 30% 40% at 6% 96%,
+      color-mix(in oklab, var(--cal-coral) 10%, transparent) 0%,
+      color-mix(in oklab, var(--cal-coral) 5%, transparent) 45%,
+      transparent 100%),
+    radial-gradient(ellipse 32% 58% at 72% 48%, transparent 40%, var(--bg) 80%),
+    var(--wp-dots);
+}
+
+/* 2. Problema: tre aloni separati dietro le tre card, uno per app, nei colori dei calendari. */
+#problema::before {
+  background:
+    var(--wp-fade),
+    radial-gradient(ellipse 18% 34% at 25% 72%, color-mix(in oklab, var(--cal-sky) 12%, transparent) 0%, color-mix(in oklab, var(--cal-sky) 5%, transparent) 50%, transparent 100%),
+    radial-gradient(ellipse 18% 34% at 50% 80%, color-mix(in oklab, var(--cal-coral) 11%, transparent) 0%, color-mix(in oklab, var(--cal-coral) 5%, transparent) 50%, transparent 100%),
+    radial-gradient(ellipse 18% 34% at 75% 72%, color-mix(in oklab, var(--cal-moss) 12%, transparent) 0%, color-mix(in oklab, var(--cal-moss) 5%, transparent) 50%, transparent 100%);
+}
+
+/* 3. Collegamenti: carta a quadretti (le linee del design system) che sfuma in alto e in basso e
+   resta libera dietro il titolo; una luce dietro la catena evento → nota → attività. */
+#collegamenti::before {
+  --wp-grid: color-mix(in oklab, var(--line) 80%, transparent);
+  background:
+    linear-gradient(var(--bg), transparent 140px, transparent calc(100% - 140px), var(--bg)),
+    radial-gradient(ellipse 420px 130px at 50% 150px, var(--bg) 50%, transparent 100%),
+    radial-gradient(ellipse 46% 40% at 50% 72%,
+      var(--surface-raised) 0%,
+      color-mix(in oklab, var(--surface-raised) 70%, transparent) 35%,
+      color-mix(in oklab, var(--surface-raised) 20%, transparent) 70%,
+      transparent 100%),
+    linear-gradient(to right, var(--wp-grid) 1px, transparent 1px) center top / var(--space-12) var(--space-12),
+    linear-gradient(to bottom, var(--wp-grid) 1px, transparent 1px) center top / var(--space-12) var(--space-12);
+}
+
+/* 4. Funzioni: luce dietro la vista mese, alone azzurro in alto e marigold vicino al promemoria. */
+#funzioni::before {
+  background:
+    var(--wp-fade),
+    radial-gradient(ellipse 30% 46% at 66% 56%,
+      var(--surface-raised) 0%,
+      color-mix(in oklab, var(--surface-raised) 65%, transparent) 35%,
+      color-mix(in oklab, var(--surface-raised) 20%, transparent) 65%,
+      transparent 100%),
+    radial-gradient(ellipse 24% 30% at 84% 20%, color-mix(in oklab, var(--cal-sky) 13%, transparent) 0%, color-mix(in oklab, var(--cal-sky) 5%, transparent) 50%, transparent 100%),
+    radial-gradient(ellipse 18% 20% at 74% 92%, color-mix(in oklab, var(--marigold) 14%, transparent) 0%, color-mix(in oklab, var(--marigold) 7%, transparent) 50%, transparent 100%),
+    radial-gradient(ellipse 34% 50% at 8% 40%, color-mix(in oklab, var(--ink) 5%, transparent) 0%, color-mix(in oklab, var(--ink) 2%, transparent) 50%, transparent 100%);
+}
+
+/* 5. Principi: punti nei margini, liberi al centro dove stanno le card; un alone verde muschio
+   (lo stesso del lucchetto dell'illustrazione) dietro il titolo. */
+#principi::before {
+  background:
+    linear-gradient(var(--bg), transparent 100px, transparent calc(100% - 100px), var(--bg)),
+    radial-gradient(ellipse 40% 54% at 50% 62%, var(--bg) 55%, transparent 100%),
+    radial-gradient(ellipse 26% 36% at 70% 22%, color-mix(in oklab, var(--cal-moss) 12%, transparent) 0%, color-mix(in oklab, var(--cal-moss) 4%, transparent) 55%, transparent 100%),
+    var(--wp-dots);
+}
+
+/* 6. Roadmap: luce dietro la strada disegnata a destra, ombra larga a sinistra. */
+#roadmap::before {
+  background:
+    var(--wp-fade),
+    radial-gradient(ellipse 28% 52% at 74% 54%,
+      var(--surface-raised) 0%,
+      color-mix(in oklab, var(--surface-raised) 65%, transparent) 35%,
+      color-mix(in oklab, var(--surface-raised) 20%, transparent) 65%,
+      transparent 100%),
+    radial-gradient(ellipse 22% 34% at 86% 26%, color-mix(in oklab, var(--cal-coral) 10%, transparent) 0%, color-mix(in oklab, var(--cal-coral) 4%, transparent) 55%, transparent 100%),
+    radial-gradient(ellipse 22% 34% at 62% 84%, color-mix(in oklab, var(--cal-sky) 10%, transparent) 0%, color-mix(in oklab, var(--cal-sky) 4%, transparent) 55%, transparent 100%),
+    radial-gradient(ellipse 36% 50% at 6% 70%, color-mix(in oklab, var(--ink) 5%, transparent) 0%, color-mix(in oklab, var(--ink) 2%, transparent) 50%, transparent 100%);
+}
+
+/* 7. Chi siamo: luce dietro la scheda del codice, punti nell'angolo, ombra larga dietro il testo. */
+#chi-siamo::before {
+  background:
+    var(--wp-fade),
+    radial-gradient(ellipse 30% 50% at 74% 60%,
+      var(--surface-raised) 0%,
+      color-mix(in oklab, var(--surface-raised) 65%, transparent) 35%,
+      color-mix(in oklab, var(--surface-raised) 20%, transparent) 65%,
+      transparent 100%),
+    radial-gradient(ellipse 40% 55% at 10% 40%, color-mix(in oklab, var(--ink) 5%, transparent) 0%, color-mix(in oklab, var(--ink) 2%, transparent) 50%, transparent 100%),
+    radial-gradient(ellipse 22% 40% at 96% 30%, transparent 30%, var(--bg) 100%),
+    linear-gradient(to right, var(--bg) 70%, transparent 90%),
+    var(--wp-dots);
+}
+
+/* 8. Chiusura: anelli che salgono dal basso (liberi dietro il testo) e una luce marigold dietro il
+   titolo: la sezione parla di una data, e marigold è il colore del tempo.
+   Anelli in --line pieno: color-mix con transparent dentro un repeating-gradient si rompe in Firefox. */
+#segui::before {
+  --wp-ring-w: calc(var(--space-12) * 2);
+  background:
+    radial-gradient(ellipse 30% 60% at 50% 46%,
+      color-mix(in oklab, var(--marigold) 14%, transparent) 0%,
+      color-mix(in oklab, var(--marigold) 8%, transparent) 35%,
+      color-mix(in oklab, var(--marigold) 2%, transparent) 70%,
+      transparent 100%),
+    radial-gradient(ellipse 380px 200px at 50% 50%, var(--bg) 55%, transparent 100%),
+    linear-gradient(var(--bg), transparent 120px),
+    repeating-radial-gradient(circle at 50% 120%,
+      transparent 0, transparent calc(var(--wp-ring-w) - 2.5px),
+      var(--line) calc(var(--wp-ring-w) - 1.5px), transparent var(--wp-ring-w));
+}
+
+/* Illustrazioni originali (assets/art/*.svg) negli spazi vuoti accanto ai titoli: solo da 1000px,
+   dove quello spazio esiste davvero; sotto, le sezioni sono in colonna e non restano vuote. */
+@media (min-width: 1000px) {
+  #problema .ap-section-inner::before, #problema .ap-section-inner::after,
+  #principi .ap-section-inner::before, #principi .ap-section-inner::after,
+  #roadmap .ap-section-inner::before, #roadmap .ap-section-inner::after,
+  #segui .ap-section-inner::before, #segui .ap-section-inner::after {
+    content: ""; position: absolute; z-index: -1; pointer-events: none;
+    mask: center / contain no-repeat;
+  }
+  /* Tratto: --ink attenuato. Parti a colore: le fasce di --wp-paint dentro la seconda maschera. */
+  #problema .ap-section-inner::before, #principi .ap-section-inner::before,
+  #roadmap .ap-section-inner::before, #segui .ap-section-inner::before { background: color-mix(in oklab, var(--ink) 34%, transparent); }
+
+  /* Problema: tre app separate, a destra del titolo (sopra la riga delle card). */
+  #problema .ap-section-inner::before, #problema .ap-section-inner::after { top: 0; right: 0; width: min(340px, 30%); aspect-ratio: 420 / 170; }
+  #problema .ap-section-inner::before { mask-image: url("./assets/art/problem.svg"); }
+  #problema .ap-section-inner::after { mask-image: url("./assets/art/problem-accent.svg"); background: linear-gradient(to right, var(--cal-sky) 0 33.3%, var(--cal-coral) 0 66.6%, var(--cal-moss) 0); }
+
+  /* Principi: tutto resta sul computer; cloud e rete fuori. Nella fascia a destra del titolo. */
+  #principi .ap-section-inner::before, #principi .ap-section-inner::after { top: 0; right: 0; width: min(440px, 40%); aspect-ratio: 480 / 96; }
+  #principi .ap-section-inner::before { mask-image: url("./assets/art/principles.svg"); }
+  #principi .ap-section-inner::after { mask-image: url("./assets/art/principles-accent.svg"); background: var(--cal-moss); }
+
+  /* Roadmap: la strada con le quattro tappe, nella metà destra vuota accanto all'elenco. */
+  #roadmap .ap-section-inner::before, #roadmap .ap-section-inner::after { top: 50%; right: 0; width: min(440px, 38%); aspect-ratio: 460 / 320; translate: 0 -40%; }
+  #roadmap .ap-section-inner::before { mask-image: url("./assets/art/roadmap.svg"); }
+  #roadmap .ap-section-inner::after { mask-image: url("./assets/art/roadmap-accent.svg"); background: linear-gradient(to right, var(--cal-sky) 0 35%, var(--cal-moss) 0 58%, var(--cal-coral) 0 80%, var(--accent) 0); }
+
+  /* Chiusura: il foglio di gennaio 2027 a sinistra (il primo cerchiato in marigold), il codice a destra. */
+  #segui .ap-section-inner::before, #segui .ap-section-inner::after { top: 0; width: 200px; aspect-ratio: 200 / 160; }
+  #segui .ap-section-inner::before { left: 0; mask-image: url("./assets/art/calendar.svg"); }
+  #segui .ap-section-inner::after { right: 0; mask-image: url("./assets/art/code.svg"); background: color-mix(in oklab, var(--ink) 34%, transparent); }
+  /* Il cerchio marigold del calendario sta sul livello della sezione, allineato al foglio. */
+  #segui::after {
+    content: ""; position: absolute; z-index: -1; pointer-events: none;
+    top: var(--space-12); left: max(var(--space-8), calc(50% - 560px)); width: 200px; aspect-ratio: 200 / 160;
+    background: var(--marigold);
+    mask: url("./assets/art/calendar-accent.svg") center / contain no-repeat;
+  }
+}
+/* Il foglio e il codice stanno ai lati del titolo centrato: servono 240px liberi per lato. */
+@media (min-width: 1000px) and (max-width: 1239px) {
+  #segui .ap-section-inner::before, #segui .ap-section-inner::after, #segui::after { display: none; }
+}
+
+/* Telefono e tablet: l'hero è in colonna (anteprima sotto il testo), quindi luce, aloni e punti scendono. */
+@media (max-width: 899px) {
+  main > .ap-hero::before {
+    background:
+      var(--wp-fade),
+      radial-gradient(ellipse 70% 30% at 50% 74%,
+        var(--surface-raised) 0%,
+        color-mix(in oklab, var(--surface-raised) 60%, transparent) 40%,
+        transparent 100%),
+      radial-gradient(ellipse 60% 18% at 80% 56%, color-mix(in oklab, var(--cal-sky) 14%, transparent) 0%, color-mix(in oklab, var(--cal-sky) 5%, transparent) 50%, transparent 100%),
+      radial-gradient(ellipse 60% 16% at 30% 94%, color-mix(in oklab, var(--marigold) 14%, transparent) 0%, color-mix(in oklab, var(--marigold) 6%, transparent) 50%, transparent 100%),
+      radial-gradient(ellipse 60% 26% at 50% 78%, transparent 40%, var(--bg) 85%),
+      var(--wp-dots);
+  }
+  #problema::before {
+    background:
+      var(--wp-fade),
+      radial-gradient(ellipse 70% 14% at 30% 40%, color-mix(in oklab, var(--cal-sky) 11%, transparent) 0%, transparent 100%),
+      radial-gradient(ellipse 70% 14% at 70% 66%, color-mix(in oklab, var(--cal-coral) 10%, transparent) 0%, transparent 100%),
+      radial-gradient(ellipse 70% 14% at 30% 90%, color-mix(in oklab, var(--cal-moss) 11%, transparent) 0%, transparent 100%);
+  }
+  #principi::before { background: linear-gradient(var(--bg), transparent 100px, transparent calc(100% - 100px), var(--bg)), radial-gradient(ellipse 30% 50% at 50% 55%, var(--bg) 40%, transparent 100%), var(--wp-dots); }
+}
+
+/* Colori forzati (es. contrasto elevato di Windows): solo contenuto, niente decorazioni. */
+@media (forced-colors: active) {
+  main > .ap-hero::before, main > .ap-section::before, main > .ap-section::after,
+  main > .ap-section > .ap-section-inner::before, main > .ap-section > .ap-section-inner::after { display: none; }
+}
